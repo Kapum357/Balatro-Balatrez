@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Card } from "../.expo/types/card";
+import { PixelButton } from "../components/PixelButton";
+import { PixelCard } from "../components/PixelCard";
+import { DeckManager } from "../managers/deckManager";
+
+const initialDeck: Card[] = [
+  { suit: "hearts", value: 10 },
+  { suit: "diamonds", value: 11 },
+  { suit: "clubs", value: 12 },
+  { suit: "spades", value: 13 },
+  { suit: "hearts", value: 14 },
+];
+
+export default function GameScreen() {
+  const [deckManager] = useState(new DeckManager(initialDeck));
+  const [hand, setHand] = useState<Card[]>([]);
+
+  const drawCards = () => {
+    const drawn = deckManager.drawCards(5);
+    setHand(drawn);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Game Screen</Text>
+      <Text style={styles.description}>This is where the game will be played.</Text>
+      <View style={styles.cardContainer}>
+        {hand.map((card, index) => (
+          <PixelCard key={index} suit={card.suit} value={card.value} />
+        ))}
+      </View>
+      <PixelButton title="Draw Cards" onPress={drawCards} type="primary" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#1a1a1a",
+    padding: 16,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#ffffff",
+    marginBottom: 16,
+  },
+  description: {
+    fontSize: 16,
+    color: "#cccccc",
+    textAlign: "center",
+    marginBottom: 32,
+  },
+  cardContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginBottom: 16,
+  },
+});
