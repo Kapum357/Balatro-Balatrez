@@ -4,29 +4,32 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import { Card } from '../.expo/types/card';
 import { evaluateHand } from '../utils/pokerEvaluator';
 
-const exampleHand: Card[] = [
-  { suit: 'hearts', value: 10 },
-  { suit: 'hearts', value: 11 },
-  { suit: 'hearts', value: 12 },
-  { suit: 'hearts', value: 13 },
-  { suit: 'hearts', value: 14 },
-];
+interface Props {
+  hand: Card[];
+}
 
-export default function PokerHandEvaluator() {
+export default function PokerHandEvaluator({ hand }: Props) {
   const [score, setScore] = useState<number | null>(null);
+  const evaluatedHands = evaluateHand(hand); // Devuelve un objeto
+  const bestHand = evaluatedHands; // Accede directamente al objeto
 
   const evaluateHandScore = () => {
-    const handScore = evaluateHand(exampleHand);
-    // Assuming evaluateHand returns an array of EvaluatedHand, and you want the score of the first hand
-    setScore(handScore[0]?.score ?? null);
+    const handScore = evaluateHand(hand);
+    setScore(handScore?.score ?? null); // Accede a la propiedad 'score'
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Poker Hand Evaluator</Text>
-      <Text>Hand: {exampleHand.map((card) => `${card.value} of ${card.suit}`).join(', ')}</Text>
-      <Text>Score: {score !== null ? score : 'Not evaluated'}</Text>
+      {hand.map((card, index) => (
+        <Text key={index} style={{ color: card.value === 'Joker' ? 'purple' : 'black' }}>
+          {card.value === 'Joker' ? '🃏 Joker' : `${card.value} de ${card.suit}`}
+        </Text>
+      ))}
+      <Text>Mejor Mano: {bestHand?.description || 'Ninguna'}</Text>
+      <Text>Puntuación: {bestHand?.score || 0}</Text>
       <Button title="Evaluate Hand" onPress={evaluateHandScore} />
+      {score !== null && <Text>Evaluated Score: {score}</Text>}
     </View>
   );
 }

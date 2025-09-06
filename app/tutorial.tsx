@@ -1,45 +1,54 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { PixelButton } from "../components/PixelButton";
+import { PixelText } from "../components/PixelText";
 
 export default function TutorialScreen() {
+  const navigation = useNavigation();
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>How to Play Balatro</Text>
+      <PixelText size="xxlarge" style={styles.title}>
+        How to Play Balatro
+      </PixelText>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>1. Build Your Deck</Text>
-        <Text style={styles.sectionDescription}>
-          Start by selecting cards to create a powerful deck. Each card has a suit and value.
-        </Text>
-        <Image
-          source={require("../assets/images/deck.png")}
-          style={styles.image}
-          resizeMode="contain"
-        />
+        <PixelText size="large" style={styles.sectionTitle}>
+          1. Build Your Deck
+        </PixelText>
+        <PixelText size="regular" style={styles.sectionDescription}>
+          Start by selecting cards to create a powerful deck. Each card has a suit
+          and value.
+        </PixelText>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>2. Master Poker Hands</Text>
-        <Text style={styles.sectionDescription}>
-          Learn the poker hand rankings to maximize your score. For example, a Royal Flush is the highest hand.
-        </Text>
-        <Image
-          source={require("../assets/images/poker-hands.png")}
-          style={styles.image}
-          resizeMode="contain"
-        />
+        <PixelText size="large" style={styles.sectionTitle}>
+          2. Master Poker Hands
+        </PixelText>
+        <PixelText size="regular" style={styles.sectionDescription}>
+          Learn the poker hand rankings to maximize your score. For example, a
+          Royal Flush is the highest hand.
+        </PixelText>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>3. Scoring</Text>
-        <Text style={styles.sectionDescription}>
-          Earn points based on your poker hands. Bonuses are awarded for special achievements, like no discards.
-        </Text>
-        <Image
-          source={require("../assets/images/scoring.png")}
-          style={styles.image}
-          resizeMode="contain"
-        />
+        <PixelText size="large" style={styles.sectionTitle}>
+          3. Scoring
+        </PixelText>
+        <PixelText size="regular" style={styles.sectionDescription}>
+          Earn points based on your poker hands. Bonuses are awarded for special
+          achievements, like no discards.
+        </PixelText>
       </View>
+
+      {/* Example Navigation Button */}
+      <PixelButton
+        title="Go Back"
+        onPress={() => navigation.goBack()}
+        type="secondary"
+      />
     </ScrollView>
   );
 }
@@ -70,10 +79,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#cccccc",
     marginBottom: 8,
-  },
-  image: {
-    width: "100%",
-    height: 150,
-    borderRadius: 8,
   },
 });

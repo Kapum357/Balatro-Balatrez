@@ -1,19 +1,39 @@
 // constants/Theme.ts
 export const PixelTheme = {
   colors: {
-    text: '#ffffff',
-    textSecondary: '#cccccc',
-    card: '#2d2d2d',
-    accent: '#ff004d',
-    background: '#1a1a1a',
+    bg: '#1c1f24',
+    bgAlt: '#343a40',
+    border: '#0d0d0f',
+    shadow: '#0d0d0f',
+    text: '#f8f9f4',
+    textFaint: '#c5c9c9',
+    accent: '#ff2366',
+    accentAlt: '#ffc744',
+    danger: '#ff4b4b',
+    info: '#26d9ff',
+    success: '#48d968',
+    cardFace: '#2a2f33',
+    cardEdge: '#0d0d0f',
+    cardHighlight: '#3b4248'
   },
-  spacing: {
-    sm: 8,
-    md: 16,
-    lg: 24,
+  spacing: { xs: 4, sm: 8, md: 16, lg: 24 },
+  radius: { none: 0, sm: 3, md: 6 },
+  elevation: {
+    offset: 3 // px drop offset
   },
-  borderRadius: {
-    small: 4,
-    medium: 8,
-  },
+  typography: {
+    // register a pixel font later; fallback monospace
+    fontPrimary: 'monospace',
+    fontPixel: 'monospace',
+    // Font sizes using responsive scaling
+    sizes: {
+      tiny: 10,
+      small: 12,
+      regular: 14,
+      medium: 16,
+      large: 18,
+      xlarge: 20,
+      xxlarge: 24
+    }
+  }
 };

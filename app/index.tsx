@@ -1,52 +1,63 @@
 import { useRouter } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { PixelButton } from "../components/PixelButton";
+import { PixelText } from "../components/PixelText";
 
-export default function Index() {
+export default function HomeScreen() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      {/* Logo or Banner */}
-      <Image
-        source={require("../assets/images/icon.png")}
-        style={styles.logo}
-        resizeMode="contain"
-      />
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.container}>
+        {/* Logo or Banner */}
+        <Image
+          source={require("../assets/images/icon.png")}
+          style={styles.logo}
+          resizeMode="contain"
+        />
 
-      {/* Welcome Message */}
-      <Text style={styles.title}>Welcome to Balatro</Text>
-      <Text style={styles.description}>
-        A roguelike deck-building game that reimagines poker. Build your deck,
-        master poker hands, and conquer challenges!
-      </Text>
+        {/* Welcome Message */}
+        <PixelText size="xxlarge" style={styles.title}>Welcome to Balatro</PixelText>
+        <PixelText size="regular" style={styles.description}>
+          A roguelike deck-building game that reimagines poker. Build your deck,
+          master poker hands, and conquer challenges!
+        </PixelText>
 
-      {/* Navigation Buttons */}
-      <PixelButton
-        title="Start Game"
-        onPress={() => router.push("/game")}
-        type="primary"
-      />
-      <PixelButton
-        title="Tutorial"
-        onPress={() => router.push("/tutorial")}
-        type="secondary"
-      />
+        {/* Navigation Buttons */}
+        <PixelButton
+          title="Ir al Juego"
+          onPress={() => router.push('/game')}
+          type="primary"
+        />
+        <PixelButton
+          title="Ir al Tutorial"
+          onPress={() => router.push('/tutorial')}
+          type="secondary"
+        />
+        <PixelButton
+          title="Ir al Login"
+          onPress={() => router.push('/login')}
+          type="secondary"
+        />
 
-      {/* Footer */}
-      <Text style={styles.footer}>© 2025 Balatro by LocalThunk</Text>
-    </View>
+        {/* Footer */}
+        <PixelText size="small" style={styles.footer}>© 2025 Balatro by LocalThunk</PixelText>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: "#1a1a1a",
+  },
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#1a1a1a",
   },
   logo: {
     width: 150,
@@ -54,20 +65,17 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#ffffff",
     marginBottom: 16,
+    textAlign: 'center',
   },
   description: {
-    fontSize: 16,
-    color: "#cccccc",
     textAlign: "center",
     marginBottom: 32,
+    paddingHorizontal: 16,
   },
   footer: {
-    fontSize: 12,
-    color: "#666666",
     marginTop: 32,
+    marginBottom: 16,
+    opacity: 0.7,
   },
 });

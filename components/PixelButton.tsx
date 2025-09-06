@@ -1,87 +1,95 @@
-// components/PixelButton.tsx
 import React from 'react';
-import {
-    Platform,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
-} from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import { PixelTheme } from '../constants/Theme';
+import { usePressScale } from '../utils/usePressScale';
 
 interface PixelButtonProps {
-    title: string;
-    onPress: () => void;
-    type?: 'primary' | 'secondary';
-    disabled?: boolean;
+  title: string;
+  onPress: () => void;
+  type?: 'primary' | 'secondary' | 'danger';
+  disabled?: boolean;
+  small?: boolean;
 }
 
-export function PixelButton({ 
-    title, 
-    onPress, 
-    type = 'primary',
-    disabled = false 
+export function PixelButton({
+  title, onPress, type = 'primary', disabled = false, small = false
 }: PixelButtonProps) {
-    return (
-        <TouchableOpacity 
-            onPress={onPress}
-            disabled={disabled}
-            style={[
-                styles.button,
-                type === 'secondary' && styles.buttonSecondary,
-                disabled && styles.buttonDisabled,
-                Platform.select({
-                    web: styles.buttonWeb,
-                    default: null,
-                })
-            ]}>
-            <View style={styles.innerShadow}>
-                <Text style={[
-                    styles.text,
-                    type === 'secondary' && styles.textSecondary,
-                    disabled && styles.textDisabled
-                ]}>
-                    {title}
-                </Text>
-            </View>
-        </TouchableOpacity>
-    );
+  const { onPressIn, onPressOut, animatedStyle } = usePressScale(0.93);
+
+  const colors = {
+    primary: PixelTheme.colors.accent,
+    secondary: PixelTheme.colors.bgAlt,
+    danger: PixelTheme.colors.danger
+  } as const;
+
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.shadowBlock} />
+      <Pressable
+        onPress={onPress}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        disabled={disabled}
+        style={({ pressed }) => [
+          styles.base,
+            { backgroundColor: colors[type] },
+            small && styles.small,
+            disabled && styles.disabled,
+            pressed && styles.pressed
+        ]}
+      >
+        <Animated.View style={[animatedStyle]}>
+          <Text style={[
+            styles.text,
+            disabled && styles.textDisabled
+          ]}>{title}</Text>
+        </Animated.View>
+      </Pressable>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    button: {
-        backgroundColor: PixelTheme.colors.accent,
-        padding: PixelTheme.spacing.sm,
-        borderRadius: PixelTheme.borderRadius.small,
-        borderWidth: 2,
-        borderBottomWidth: 4,
-        borderRightWidth: 4,
-        borderColor: '#000000',
-    },
-    buttonSecondary: {
-        backgroundColor: PixelTheme.colors.card,
-    },
-    buttonDisabled: {
-        backgroundColor: PixelTheme.colors.textSecondary,
-        opacity: 0.5,
-    },
-    buttonWeb: {
-        cursor: 'pointer',
-    },
-    innerShadow: {
-        padding: PixelTheme.spacing.sm,
-    },
-    text: {
-        color: PixelTheme.colors.text,
-        fontSize: 16,
-        fontFamily: 'monospace',
-        textAlign: 'center',
-        textTransform: 'uppercase',
-    },
-    textSecondary: {
-        color: PixelTheme.colors.textSecondary,
-    },
-    textDisabled: {
-        color: PixelTheme.colors.textSecondary,
-    }
+  wrapper: {
+    position: 'relative',
+    margin: PixelTheme.spacing.xs
+  },
+  shadowBlock: {
+    position: 'absolute',
+    top: 4,
+    left: 4,
+    right: -4,
+    bottom: -4,
+    backgroundColor: PixelTheme.colors.shadow,
+  },
+  base: {
+    borderWidth: 2,
+    borderColor: PixelTheme.colors.border,
+    paddingVertical: PixelTheme.spacing.xs + 2,
+    paddingHorizontal: PixelTheme.spacing.md,
+    minWidth: 96,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  small: {
+    paddingHorizontal: PixelTheme.spacing.sm,
+    minWidth: 72
+  },
+  pressed: {
+    transform: [{ translateX: 2 }, { translateY: 2 }],
+  },
+  disabled: {
+    opacity: 0.45
+  },
+  text: {
+    color: PixelTheme.colors.text,
+    fontFamily: PixelTheme.typography.fontPixel,
+    textTransform: 'uppercase',
+    fontSize: 13,
+    letterSpacing: 1
+  },
+  textDisabled: {
+    color: PixelTheme.colors.textFaint
+  }
 });

@@ -10,8 +10,11 @@ export function calculateHandScore(playerHand: Card[], options: ScoringOptions):
   // Evaluate the player's hand
   const evaluatedHands = evaluateHand(playerHand);
 
+  // Ensure evaluatedHands is an array
+  const handsArray = Array.isArray(evaluatedHands) ? evaluatedHands : [evaluatedHands];
+
   // Find the highest-scoring hand
-  const bestHand = evaluatedHands.reduce((best, current) =>
+  const bestHand = handsArray.reduce((best, current) =>
     current.score > best.score ? current : best,
   );
 
@@ -20,22 +23,27 @@ export function calculateHandScore(playerHand: Card[], options: ScoringOptions):
 
   // Apply bonuses
   if (options.discards === 0) {
-    score += 50; // Bonus for no discards
-    console.log("Bonus: No discards (+50)");
+    score += 50; // Bonificación por no descartar
   }
 
   // Apply penalties
   if (options.discards > 3) {
-    score -= 20; // Penalty for excessive discards
-    console.log("Penalty: Too many discards (-20)");
+    score -= 20; // Penalización por descartar demasiado
   }
 
   // Apply multipliers based on round type
   if (options.roundType === 'hard') {
-    score *= 1.5; // 1.5x multiplier for hard rounds
-    console.log("Multiplier: Hard round (x1.5)");
+    score *= 1.5; // Multiplicador para rondas difíciles
   }
 
   console.log(`Final score: ${score}`);
   return score;
+}
+
+export function calculateBestScoreWithJokers(nonJokers: Card[], jokerCount: number): number {
+  // Lógica para maximizar la puntuación usando Jokers
+  let maxScore = 0;
+  // Iterar sobre posibles combinaciones
+  // ...
+  return maxScore + jokerCount * 10; // Bonificación por Joker
 }

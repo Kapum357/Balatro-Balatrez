@@ -1,9 +1,17 @@
 // components/AnimatedCardDraw.tsx
-import React, { useEffect } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { PixelCard } from "./PixelCard";
 
-export default function AnimatedCardDraw({ card }: { card: string }) {
+interface CardProps {
+  card: {
+    suit: "H" | "D" | "C" | "S" | "JOKER";
+    value: string;
+  };
+}
+
+export default function AnimatedCardDraw({ card }: CardProps) {
   const translateY = useSharedValue(50);
   const opacity = useSharedValue(0);
 
@@ -19,25 +27,21 @@ export default function AnimatedCardDraw({ card }: { card: string }) {
 
   return (
     <Animated.View style={[styles.card, animatedStyle]}>
-      <Text style={styles.cardText}>{card}</Text>
+      <PixelCard suit={card.suit} value={card.value} />
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 16,
     margin: 8,
     borderRadius: 8,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
-  },
-  cardText: {
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });
