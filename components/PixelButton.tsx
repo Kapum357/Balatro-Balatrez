@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { PixelTheme } from '../constants/Theme';
+import { Theme } from '../constants/Theme';
 import { usePressScale } from '../utils/usePressScale';
 
 interface PixelButtonProps {
@@ -10,21 +10,22 @@ interface PixelButtonProps {
   type?: 'primary' | 'secondary' | 'danger';
   disabled?: boolean;
   small?: boolean;
+  style?: object;
 }
 
 export function PixelButton({
-  title, onPress, type = 'primary', disabled = false, small = false
+  title, onPress, type = 'primary', disabled = false, small = false, style
 }: PixelButtonProps) {
   const { onPressIn, onPressOut, animatedStyle } = usePressScale(0.93);
 
   const colors = {
-    primary: PixelTheme.colors.accent,
-    secondary: PixelTheme.colors.bgAlt,
-    danger: PixelTheme.colors.danger
+    primary: Theme.colors.accent,
+    secondary: Theme.colors.bgAlt,
+    danger: Theme.colors.danger
   } as const;
 
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, style]}> {/* Apply the custom style here */}
       <View style={styles.shadowBlock} />
       <Pressable
         onPress={onPress}
@@ -33,10 +34,10 @@ export function PixelButton({
         disabled={disabled}
         style={({ pressed }) => [
           styles.base,
-            { backgroundColor: colors[type] },
-            small && styles.small,
-            disabled && styles.disabled,
-            pressed && styles.pressed
+          { backgroundColor: colors[type] },
+          small && styles.small,
+          disabled && styles.disabled,
+          pressed && styles.pressed
         ]}
       >
         <Animated.View style={[animatedStyle]}>
@@ -53,7 +54,7 @@ export function PixelButton({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
-    margin: PixelTheme.spacing.xs
+    margin: Theme.spacing.xs
   },
   shadowBlock: {
     position: 'absolute',
@@ -61,19 +62,19 @@ const styles = StyleSheet.create({
     left: 4,
     right: -4,
     bottom: -4,
-    backgroundColor: PixelTheme.colors.shadow,
+    backgroundColor: Theme.colors.shadow,
   },
   base: {
     borderWidth: 2,
-    borderColor: PixelTheme.colors.border,
-    paddingVertical: PixelTheme.spacing.xs + 2,
-    paddingHorizontal: PixelTheme.spacing.md,
+    borderColor: Theme.colors.border,
+    paddingVertical: Theme.spacing.xs + 2,
+    paddingHorizontal: Theme.spacing.md,
     minWidth: 96,
     alignItems: 'center',
     justifyContent: 'center'
   },
   small: {
-    paddingHorizontal: PixelTheme.spacing.sm,
+    paddingHorizontal: Theme.spacing.sm,
     minWidth: 72
   },
   pressed: {
@@ -83,13 +84,13 @@ const styles = StyleSheet.create({
     opacity: 0.45
   },
   text: {
-    color: PixelTheme.colors.text,
-    fontFamily: PixelTheme.typography.fontPixel,
+    color: Theme.colors.text,
+    fontFamily: Theme.typography.fontPixel,
     textTransform: 'uppercase',
     fontSize: 13,
     letterSpacing: 1
   },
   textDisabled: {
-    color: PixelTheme.colors.textFaint
+    color: Theme.colors.textFaint
   }
 });

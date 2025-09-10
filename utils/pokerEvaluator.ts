@@ -9,17 +9,19 @@ interface EvaluatedHand {
   score: number;
 }
 
-export function evaluateHand(hand: Card[]): { score: number; description: string } {
+export function evaluateHand(hand: Card[]): EvaluatedHand[] {
   const jokers = hand.filter((card) => card.value === 'Joker');
   const nonJokers = hand.filter((card) => card.value !== 'Joker');
 
   // Lógica para evaluar combinaciones con Jokers
   if (jokers.length > 0) {
-    // Ejemplo: Tratar al Joker como el valor que maximiza la puntuación
-    return {
-      score: calculateBestScoreWithJokers(nonJokers, jokers.length),
-      description: 'Mano con Joker(s)',
-    };
+    return [
+      {
+        type: 'pair', // Use a valid PokerHandType or the most appropriate type
+        description: 'Mano con Joker(s)',
+        score: calculateBestScoreWithJokers(nonJokers, jokers.length),
+      },
+    ];
   }
 
   // Evaluar manos normales
@@ -33,7 +35,7 @@ function calculateBestScoreWithJokers(cards: Card[], jokerCount: number): number
   return 100 + jokerCount * 10; // Ejemplo: +10 puntos por cada Joker para la mejor combinación
 }
 
-function evaluateStandardHand(cards: Card[]): { score: number; description: string } {
+function evaluateStandardHand(cards: Card[]): EvaluatedHand[] {
   const possibleHands: EvaluatedHand[] = [];
 
   if (isPair(cards)) {
@@ -102,17 +104,8 @@ function evaluateStandardHand(cards: Card[]): { score: number; description: stri
     }
   }
 
-  // Si no se encontró ninguna mano, devolver una puntuación de 0 y una descripción vacía
-  if (possibleHands.length === 0) {
-    return { score: 0, description: '' };
-  }
-
-  // Ordenar las manos posibles por puntuación (de mayor a menor) y devolver la mejor
-  possibleHands.sort((a, b) => b.score - a.score);
-  return {
-    score: possibleHands[0].score,
-    description: possibleHands[0].description,
-  };
+  // Si no se encontró ninguna mano, devolver una lista vacía
+  return possibleHands;
 }
 
 function calculateJokerBonus(cards: Card[]): number {
@@ -134,7 +127,6 @@ function isPair(cards: Card[]): boolean {
 
 function isFlush(cards: Card[]): boolean {
   const suits = cards.map((card) => card.suit);
-  const jokers = cards.filter((card) => card.value === 'Joker');
 
   // Si hay Jokers, ignora su palo
   return suits.filter((suit) => suit !== 'wild').every((suit) => suit === suits[0]);

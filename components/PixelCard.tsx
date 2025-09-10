@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { PixelTheme } from '../constants/Theme';
+import { Theme } from '../constants/Theme';
 
 interface PixelCardProps {
   suit: 'H' | 'D' | 'S' | 'C' | 'JOKER';
@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
   wrapper: {
     width: W,
     height: H,
-    backgroundColor: PixelTheme.colors.cardFace,
+    backgroundColor: Theme.colors.cardFace,
     borderWidth: 2,
-    borderColor: PixelTheme.colors.cardEdge,
+    borderColor: Theme.colors.cardEdge,
     margin: 4,
     position: 'relative',
   },
@@ -106,31 +106,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   value: {
-    fontFamily: PixelTheme.typography.fontPixel,
+    fontFamily: Theme.typography.fontPixel,
     fontSize: 12,
-    color: PixelTheme.colors.text
+    color: Theme.colors.text
   },
   suit: {
     fontSize: 10,
-    color: PixelTheme.colors.text
+    color: Theme.colors.text
   },
   big: {
     fontSize: 28,
-    fontFamily: PixelTheme.typography.fontPixel,
-    color: PixelTheme.colors.text
+    fontFamily: Theme.typography.fontPixel,
+    color: Theme.colors.text
   },
   red: {
-    color: PixelTheme.colors.danger
+    color: Theme.colors.danger
   },
   joker: {
     backgroundColor: '#262e24',
-    borderColor: PixelTheme.colors.success
+    borderColor: Theme.colors.success
   },
   jokerText: {
-    color: PixelTheme.colors.success
+    color: Theme.colors.success
   },
   selected: {
-    borderColor: PixelTheme.colors.accent,
+    borderColor: Theme.colors.accent,
     top: -4
   },
   muted: {

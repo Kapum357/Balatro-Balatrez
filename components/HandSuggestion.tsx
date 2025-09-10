@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Card } from '../.expo/types/card';
-import { PixelTheme } from '../constants/Theme';
+import { Theme } from '../constants/Theme';
 import { evaluateHand } from '../utils/pokerEvaluator';
 
 interface HandSuggestionProps {
@@ -31,23 +31,23 @@ export function HandSuggestion({ cards }: HandSuggestionProps) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: PixelTheme.spacing.sm,
-    backgroundColor: PixelTheme.colors.background,
-    borderRadius: PixelTheme.borderRadius.small,
+    padding: Theme.spacing.sm,
+    backgroundColor: Theme.colors.bg,
+    borderRadius: Theme.radius.sm,
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: PixelTheme.colors.text,
+    color: Theme.colors.text,
     marginBottom: 8,
   },
   suggestion: {
     marginBottom: 8,
   },
   handType: {
-    color: PixelTheme.colors.accent,
+    color: Theme.colors.accent,
   },
   score: {
-    color: PixelTheme.colors.textSecondary,
+    color: Theme.colors.textFaint,
   },
 });

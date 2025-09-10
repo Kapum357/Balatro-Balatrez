@@ -25,9 +25,10 @@ export default function ScoreScreen() {
         <View style={styles.container}>
             <Text style={styles.title}>Calcular Puntuación</Text>
             <Text>Mano del Jugador:</Text>
-            {playerHand.map((card, index) => (
-                <Text key={index}>{`${card.value} de ${card.suit}`}</Text>
-            ))}
+            {playerHand.map((card, index) => {
+                console.log("card.value:", card.value, "card.suit:", card.suit);
+                return <Text key={index}>{`${card.value} de ${card.suit}`}</Text>;
+            })}
             <Text>Descartes: {discards}</Text>
             <Text>Puntuación Actual: {score}</Text>
             <Button title="Calcular Puntuación" onPress={calculatePlayerScore} />

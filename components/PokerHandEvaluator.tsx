@@ -10,12 +10,18 @@ interface Props {
 
 export default function PokerHandEvaluator({ hand }: Props) {
   const [score, setScore] = useState<number | null>(null);
-  const evaluatedHands = evaluateHand(hand); // Devuelve un objeto
-  const bestHand = evaluatedHands; // Accede directamente al objeto
+  const evaluatedHands = evaluateHand(hand); // Devuelve un array de objetos EvaluatedHand
+  const bestHand = evaluatedHands && evaluatedHands.length > 0
+    ? evaluatedHands.reduce((prev, curr) => (curr.score > prev.score ? curr : prev))
+    : null; // Selecciona la mejor mano
 
   const evaluateHandScore = () => {
-    const handScore = evaluateHand(hand);
-    setScore(handScore?.score ?? null); // Accede a la propiedad 'score'
+    if (evaluatedHands && evaluatedHands.length > 0) {
+      const best = evaluatedHands.reduce((prev, curr) => (curr.score > prev.score ? curr : prev));
+      setScore(best.score);
+    } else {
+      setScore(null);
+    }
   };
 
   return (

@@ -1,7 +1,7 @@
 // components/PixelSurface.tsx
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
-import { PixelTheme } from '../constants/Theme';
+import { Theme } from '../constants/Theme';
 
 interface Props extends ViewProps {
   inset?: boolean;
@@ -14,7 +14,7 @@ export function PixelSurface({
   children,
   inset = false,
   variant = 'raised',
-  color = PixelTheme.colors.bgAlt,
+  color = Theme.colors.bgAlt,
   ...rest
 }: Props) {
   return (
@@ -31,18 +31,18 @@ export function PixelSurface({
   );
 }
 
-const b = PixelTheme.colors.border;
-const sh = PixelTheme.colors.shadow;
+const b = Theme.colors.border;
+const sh = Theme.colors.shadow;
 
 const styles = StyleSheet.create({
   base: {
     borderWidth: 2,
     borderColor: b,
-    padding: PixelTheme.spacing.sm
+    padding: Theme.spacing.sm
   },
   raised: {
     shadowColor: sh,
-    shadowOffset: { width: 0, height: PixelTheme.elevation.offset },
+    shadowOffset: { width: 0, height: Theme.elevation.offset },
     shadowOpacity: 1,
     shadowRadius: 0,
     elevation: 0
@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
     borderLeftColor: sh,
   },
   inset: {
-    padding: PixelTheme.spacing.xs
+    padding: Theme.spacing.xs
   }
 });

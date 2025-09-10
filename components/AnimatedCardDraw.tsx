@@ -26,9 +26,12 @@ export default function AnimatedCardDraw({ card }: CardProps) {
   }));
 
   return (
-    <Animated.View style={[styles.card, animatedStyle]}>
-      <PixelCard suit={card.suit} value={card.value} />
-    </Animated.View>
+    <>
+      <PixelCard suit="H" value="A" selected />
+      <Animated.View style={[styles.card, animatedStyle]}>
+        <PixelCard suit={card.suit} value={card.value} />
+      </Animated.View>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 // components/PixelLayout.tsx
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
-import { PixelTheme } from '../constants/Theme';
+import { Theme } from '../constants/Theme';
 
 interface PixelLayoutProps extends ViewProps {
     children: React.ReactNode;
@@ -20,14 +20,14 @@ export function PixelLayout({ children, style, ...props }: PixelLayoutProps) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: PixelTheme.colors.background,
+        backgroundColor: Theme.colors.bg,
     },
     pixelBorder: {
         flex: 1,
-        margin: PixelTheme.spacing.sm,
+        margin: Theme.spacing.sm,
         borderWidth: 2,
-        borderColor: PixelTheme.colors.accent,
-        borderRadius: PixelTheme.borderRadius.small,
-        padding: PixelTheme.spacing.md,
+        borderColor: Theme.colors.accent,
+        borderRadius: Theme.radius.sm,
+        padding: Theme.spacing.md,
     }
 });

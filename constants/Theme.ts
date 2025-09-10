@@ -1,5 +1,5 @@
 // constants/Theme.ts
-export const PixelTheme = {
+export const Theme = {
   colors: {
     bg: '#1c1f24',
     bgAlt: '#343a40',

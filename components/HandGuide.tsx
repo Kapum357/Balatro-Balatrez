@@ -1,7 +1,7 @@
 // components/HandGuide.tsx
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { PixelTheme } from '../constants/Theme';
+import { Theme } from '../constants/Theme';
 import { POKER_HANDS } from '../utils/pokerGuide';
 
 export function HandGuide() {
@@ -23,35 +23,35 @@ export function HandGuide() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: PixelTheme.spacing.md,
+    padding: Theme.spacing.md,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: PixelTheme.colors.text,
+    color: Theme.colors.text,
   },
   handContainer: {
-    backgroundColor: PixelTheme.colors.card,
-    padding: PixelTheme.spacing.md,
-    marginBottom: PixelTheme.spacing.sm,
-    borderRadius: PixelTheme.borderRadius.small,
+    backgroundColor: Theme.colors.cardFace, // Replaced 'card' with 'cardFace'
+    padding: Theme.spacing.md,
+    marginBottom: Theme.spacing.sm,
+    borderRadius: Theme.radius.sm, // Replaced 'borderRadius.small' with 'radius.sm'
   },
   handName: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: PixelTheme.colors.accent,
+    color: Theme.colors.accent,
   },
   description: {
-    color: PixelTheme.colors.text,
+    color: Theme.colors.text,
     marginVertical: 4,
   },
   example: {
-    color: PixelTheme.colors.textSecondary,
+    color: Theme.colors.textFaint, // Replaced 'textSecondary' with 'textFaint'
     fontFamily: 'monospace',
   },
   score: {
-    color: PixelTheme.colors.text,
+    color: Theme.colors.text,
     marginTop: 4,
   },
 });

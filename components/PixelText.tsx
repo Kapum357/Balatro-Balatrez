@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
-import { PixelTheme } from '../constants/Theme';
+import { Theme } from '../constants/Theme';
 import { ResponsiveUI } from '../utils/responsive';
 
 interface PixelTextProps extends TextProps {
-  size?: keyof typeof PixelTheme.typography.sizes;
+  size?: keyof typeof Theme.typography.sizes;
   color?: string;
   centered?: boolean;
   children: React.ReactNode;
@@ -12,7 +12,7 @@ interface PixelTextProps extends TextProps {
 
 export function PixelText({ 
   size = 'regular',
-  color = PixelTheme.colors.text,
+  color = Theme.colors.text,
   centered = false,
   style,
   children,
@@ -23,7 +23,7 @@ export function PixelText({
       style={[
         styles.base,
         {
-          fontSize: ResponsiveUI.typography.body(PixelTheme.typography.sizes[size]),          
+          fontSize: ResponsiveUI.typography.body(Theme.typography.sizes[size]),          
           color,
           textAlign: centered ? 'center' : 'left',
         },
@@ -38,7 +38,7 @@ export function PixelText({
 
 const styles = StyleSheet.create({
   base: {
-    fontFamily: PixelTheme.typography.fontPixel,
+    fontFamily: Theme.typography.fontPixel,
     letterSpacing: 0.5,
   },
 });

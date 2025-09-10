@@ -35,7 +35,24 @@ export default function DeckManagerComponent() {
       <Button title="Discard Hand" onPress={discardHand} />
       <View>
         {hand.map((card, index) => (
-          <AnimatedCardDraw key={index} card={`${card.value} of ${card.suit}`} />
+          <AnimatedCardDraw
+            key={index}
+            card={{
+              suit:
+                card.suit === 'hearts'
+                  ? 'H'
+                  : card.suit === 'diamonds'
+                  ? 'D'
+                  : card.suit === 'clubs'
+                  ? 'C'
+                  : card.suit === 'spades'
+                  ? 'S'
+                  : card.suit === 'joker'
+                  ? 'JOKER'
+                  : 'H', // default to 'H' if suit is unknown
+              value: card.value.toString(),    // Ensure the value is a string
+            }}
+          />
         ))}
       </View>
     </View>
