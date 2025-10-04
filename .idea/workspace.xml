@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0c4af56f-c3cc-4584-9303-53d21cda14af" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/progression.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/play.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/play.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/GameConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/GameConstants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/useGameFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useGameFlow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/roundManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/managers/roundManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/scoringUtility.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/scoringUtility.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-modules-autolinking/android/expo-gradle-plugin">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-modules-core/expo-module-gradle-plugin">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-edge-to-edge/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-safe-area-context/android">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="copilot/fix-4b3e2de0-9d5a-4bbe-9977-bf1eb1108901" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Kapum357&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Kapum357/Balatro-Balatrez.git&quot;,
+    &quot;accountId&quot;: &quot;6fce79a0-9e2c-4834-831e-1334a7dc38c7&quot;
+  }
+}</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/node_modules/expo-modules-autolinking/android/expo-gradle-plugin" gradleHome="C:\Users\USUARIO\.gradle\wrapper\dists\gradle-8.14-bin\38aieal9i53h9rfe7vjup95b9\gradle-8.14" javaHome="C:\Program Files\Eclipse Adoptium\jdk-17.0.15.6-hotspot" gradleVersion="8.14" />
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="32hTsI7pHZD0vfCdBqGoIAbSMGz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Rebasing main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.android.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.web.executor&quot;: &quot;Run&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.customInstructions.CopilotInstructionsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\USUARIO\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\USUARIO\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="f5cb8f60-ee86-4a47-9084-8275745ed4b5" reportId="Balatro-Balatrez/qodana/2025-10-03" />
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\USUARIO\Documents\GitHub\Balatro-Balatrez\supabase" />
+      <recent name="C:\Users\USUARIO\Documents\GitHub\Balatro-Balatrez\.expo\types" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="android" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="android" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="web" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="web" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.android" />
+        <item itemvalue="npm.web" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0c4af56f-c3cc-4584-9303-53d21cda14af" name="Changes" comment="" />
+      <created>1757872011499</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757872011499</updated>
+      <workItem from="1757872012410" duration="589000" />
+      <workItem from="1757872647724" duration="4648000" />
+      <workItem from="1757937891304" duration="11000" />
+      <workItem from="1758054040893" duration="7070000" />
+      <workItem from="1758114561720" duration="449000" />
+      <workItem from="1758116981462" duration="8000" />
+      <workItem from="1758163062739" duration="3352000" />
+      <workItem from="1758166476869" duration="1089000" />
+      <workItem from="1758200376710" duration="746000" />
+      <workItem from="1758209319904" duration="1421000" />
+      <workItem from="1758217828793" duration="308000" />
+      <workItem from="1758226108649" duration="4403000" />
+      <workItem from="1758230939228" duration="1455000" />
+      <workItem from="1758480662040" duration="318000" />
+      <workItem from="1758480994600" duration="426000" />
+      <workItem from="1758481439994" duration="1655000" />
+      <workItem from="1758483189029" duration="5574000" />
+      <workItem from="1758568328263" duration="6240000" />
+      <workItem from="1758591683738" duration="53000" />
+      <workItem from="1758657996407" duration="6071000" />
+      <workItem from="1758746409145" duration="1192000" />
+      <workItem from="1758747655955" duration="1111000" />
+      <workItem from="1758758200145" duration="4191000" />
+      <workItem from="1758762446609" duration="3596000" />
+      <workItem from="1758766105560" duration="97000" />
+      <workItem from="1758766219238" duration="281000" />
+      <workItem from="1758766515097" duration="302000" />
+      <workItem from="1758766828857" duration="68000" />
+      <workItem from="1758766909659" duration="3300000" />
+      <workItem from="1758817386838" duration="75000" />
+      <workItem from="1758829851218" duration="3000" />
+      <workItem from="1759148393416" duration="829000" />
+      <workItem from="1759259748073" duration="715000" />
+      <workItem from="1759266050210" duration="75000" />
+      <workItem from="1759545430255" duration="1060000" />
+      <workItem from="1759592138213" duration="746000" />
+      <workItem from="1759594828070" duration="35000" />
+    </task>
+    <task id="LOCAL-00001" summary="Refactor imports to use absolute paths and update ShopScreen to utilize PixelButton for purchasing items">
+      <option name="closed" value="true" />
+      <created>1759545527136</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759545527136</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="copilot/vscode1759589531930" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Refactor imports to use absolute paths and update ShopScreen to utilize PixelButton for purchasing items" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor imports to use absolute paths and update ShopScreen to utilize PixelButton for purchasing items" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
