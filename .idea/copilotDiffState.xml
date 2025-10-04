@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/.expo/types/database.d.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/.expo/types/database.d.ts" />
+              <option name="updatedContent" value="export type Json =&#10;  | string&#10;  | number&#10;  | boolean&#10;  | null&#10;  | { [key: string]: Json }&#10;  | Json[];&#10;&#10;export interface Database {&#10;  public: {&#10;    Tables: {&#10;      profiles: {&#10;        Row: {&#10;          id: string;&#10;          username: string | null;&#10;          avatar_url: string | null;&#10;          created_at: string;&#10;          updated_at: string;&#10;          coins: number | null;&#10;          games_played: number | null;&#10;          highest_score: number | null;&#10;        };&#10;        Insert: {&#10;          id: string;&#10;          username?: string | null;&#10;          avatar_url?: string | null;&#10;          created_at?: string;&#10;          updated_at?: string;&#10;          coins?: number | null;&#10;          games_played?: number | null;&#10;          highest_score?: number | null;&#10;        };&#10;        Update: {&#10;          id?: string;&#10;          username?: string | null;&#10;          avatar_url?: string | null;&#10;          created_at?: string;&#10;          updated_at?: string;&#10;          coins?: number | null;&#10;          games_played?: number | null;&#10;          highest_score?: number | null;&#10;        };&#10;      };&#10;    };&#10;  };&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

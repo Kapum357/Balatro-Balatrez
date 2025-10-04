@@ -17,11 +17,6 @@ export class RoundManager {
         console.log(`Round started: ${type}`);
     }
 
-    // The method 'getCurrentRound' is currently unused in the project. Consider removing it or integrating it where necessary.
-    getCurrentRound(): GameRound | null {
-        return this.currentRound;
-    }
-
     calculateScore(playerHand: Card[], actions: { discards: number }): number {
         if (!this.currentRound) {
             throw new Error("No active round to calculate score for.");
@@ -29,8 +24,7 @@ export class RoundManager {
 
         // Cálculo lineal y predecible
         let score = calculateHandScore(playerHand, {
-            discards: actions.discards,
-            roundType: this.currentRound.type,
+            discards: actions.discards
         });
         
         // Bonificaciones estáticas
@@ -65,30 +59,5 @@ export class RoundManager {
 
     getTotalScore(): number {
         return this.totalScore;
-    }
-}
-
-// The class 'ResourceManager' and its methods are currently unused in the project. Consider removing them or integrating them where necessary.
-export class ResourceManager {
-    private chips: number;
-
-    constructor(initialChips: number) {
-        this.chips = initialChips;
-    }
-
-    spendChips(amount: number): boolean {
-        if (this.chips >= amount) {
-            this.chips -= amount;
-            return true;
-        }
-        return false;
-    }
-
-    addChips(amount: number) {
-        this.chips += amount;
-    }
-
-    getChips(): number {
-        return this.chips;
     }
 }

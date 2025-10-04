@@ -122,6 +122,13 @@ export default function TabsLayout() {
                                 title: "Camera",
                                 href: null
                             }}/>
+                        <Tabs.Screen
+                            name="chat/[channelId]"
+                            options={{
+                                href: null,
+                                headerShown: false,
+                            }}
+                        />
                     </Tabs>
                 </GameProvider>
             </LoginProvider>

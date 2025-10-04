@@ -39,11 +39,6 @@ export class ShopManager {
         return null;
     }
 
-    // The method 'addChips' is currently unused in the project. Consider removing it or integrating it where necessary.
-    addChips(amount: number) {
-        this.chips += amount;
-    }
-
     getAvailableItems() {
         return {
             jokers: this.jokers,

@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Animated, { useSharedValue, withTiming, useAnimatedStyle } from 'react-native-reanimated';
 import { Theme } from '@/constants/Theme';
-import { usePressScale } from '@/utils/usePressScale';
 
 interface PixelButtonProps {
   title?: string;
@@ -23,7 +22,14 @@ export function PixelButton({
   small = false,
   style
 }: PixelButtonProps) {
-  const { onPressIn, onPressOut, animatedStyle } = usePressScale(0.93); // Add animation scaling
+  const scaleDown = 0.93;
+  const dur = 90;
+  const sv = useSharedValue(1);
+  const onPressIn = useCallback(() => { sv.value = withTiming(scaleDown, { duration: dur }); }, [scaleDown, dur, sv]);
+  const onPressOut = useCallback(() => { sv.value = withTiming(1, { duration: dur }); }, [dur, sv]);
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: sv.value }],
+  }));
 
   const colors = {
     primary: Theme.colors.accent,

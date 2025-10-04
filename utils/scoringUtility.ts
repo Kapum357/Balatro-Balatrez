@@ -3,7 +3,6 @@ import { evaluateHand } from './pokerEvaluator';
 
 interface ScoringOptions {
   discards: number; // Number of cards discarded
-  roundType?: 'normal' | 'hard'; // Type of round (optional)
 }
 
 export function calculateHandScore(playerHand: Card[], options: ScoringOptions): number {
@@ -29,11 +28,6 @@ export function calculateHandScore(playerHand: Card[], options: ScoringOptions):
   // Apply penalties
   if (options.discards > 3) {
     score -= 20; // Penalización por descartar demasiado
-  }
-
-  // Apply multipliers based on round type
-  if (options.roundType === 'hard') {
-    score *= 1.5; // Multiplicador para rondas difíciles
   }
 
   console.log(`Final score: ${score}`);
