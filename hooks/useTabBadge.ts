@@ -1,3 +1,4 @@
+// The function 'useTabBadge' is currently unused in the project. Consider removing it or integrating it where necessary.
 // hooks/useTabBadge.ts
 import * as Haptics from 'expo-haptics';
 import { useState } from 'react';

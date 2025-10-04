@@ -1,5 +1,5 @@
 // managers/deckManager.ts
-import { Card } from '../.expo/types/card';
+import {Card} from '@/.expo/types/card';
 
 export class DeckManager {
   private deck: Card[] = [];
@@ -15,8 +15,7 @@ export class DeckManager {
   }
 
   drawCards(count: number): Card[] {
-    const drawnCards = this.deck.splice(0, count);
-    return drawnCards;
+      return this.deck.splice(0, count);
   }
 
   discardCards(cards: Card[]) {
@@ -31,10 +30,5 @@ export class DeckManager {
     }
     this.discardPile = [];
     this.shuffleDeck();
-  }
-
-  // Add this method to retrieve the current deck
-  getDeck(): Card[] {
-    return [...this.deck];
   }
 }

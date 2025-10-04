@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { PixelButton } from "../components/PixelButton";
-import { PixelText } from "../components/PixelText";
+import { PixelButton } from "@/components/PixelButton";
+import { PixelText } from "@/components/PixelText";
 
 export default function TutorialScreen() {
   const navigation = useNavigation();
@@ -47,7 +47,7 @@ export default function TutorialScreen() {
       <PixelButton
         title="Go Back"
         onPress={() => navigation.goBack()}
-        type="secondary"
+        variant="secondary"
       />
     </ScrollView>
   );

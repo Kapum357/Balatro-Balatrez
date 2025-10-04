@@ -1,6 +1,6 @@
-import { Card } from '../.expo/types/card';
-import { GameRound, RoundType } from '../.expo/types/game';
-import { calculateHandScore } from '../utils/scoringUtility';
+import { Card } from '@/.expo/types/card';
+import { GameRound, RoundType } from '@/.expo/types/game';
+import { calculateHandScore } from '@/utils/scoringUtility';
 
 export class RoundManager {
     private currentRound: GameRound | null = null;
@@ -17,6 +17,7 @@ export class RoundManager {
         console.log(`Round started: ${type}`);
     }
 
+    // The method 'getCurrentRound' is currently unused in the project. Consider removing it or integrating it where necessary.
     getCurrentRound(): GameRound | null {
         return this.currentRound;
     }
@@ -67,6 +68,7 @@ export class RoundManager {
     }
 }
 
+// The class 'ResourceManager' and its methods are currently unused in the project. Consider removing them or integrating them where necessary.
 export class ResourceManager {
     private chips: number;
 

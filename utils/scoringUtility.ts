@@ -1,4 +1,4 @@
-import { Card } from '../.expo/types/card';
+import { Card } from '@/.expo/types/card';
 import { evaluateHand } from './pokerEvaluator';
 
 interface ScoringOptions {
@@ -40,10 +40,3 @@ export function calculateHandScore(playerHand: Card[], options: ScoringOptions):
   return score;
 }
 
-export function calculateBestScoreWithJokers(nonJokers: Card[], jokerCount: number): number {
-  // Lógica para maximizar la puntuación usando Jokers
-  let maxScore = 0;
-  // Iterar sobre posibles combinaciones
-  // ...
-  return maxScore + jokerCount * 10; // Bonificación por Joker
-}

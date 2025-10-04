@@ -1,18 +1,21 @@
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { ActivityIndicator, Alert, Image, Pressable, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {ActivityIndicator, Alert, Image, RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
 
-import { useRouter } from "expo-router";
-import React, { useCallback, useEffect, useState } from "react";
+import {useRouter} from "expo-router";
+import React, {useCallback, useEffect, useState} from "react";
 
-import { PixelButton } from "../components/PixelButton";
-import { PixelText } from "../components/PixelText";
-import { Theme } from "../constants/Theme";
-import { useGameContext } from '../contexts/GameContext';
+import {PixelButton} from "@/components/PixelButton";
+import {PixelText} from "@/components/PixelText";
+import {Theme} from "@/constants/Theme";
+import {useGameContext} from '@/contexts/GameContext';
+import {useAuth} from '@/contexts/AuthContext'; // Import Auth context
+import {supabase} from '@/utils/supabaseClient'; // Import Supabase client
 
 export default function HomeScreen() {
   const navigation = useNavigation();
   const router = useRouter();
   const { state, dispatch } = useGameContext();
+  const { signOut, session } = useAuth(); // Get signOut and session from Auth context
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [playerStats, setPlayerStats] = useState({
@@ -20,24 +23,58 @@ export default function HomeScreen() {
     highScore: 0,
     // Add more stats as needed
   });
+  const [leaderboard, setLeaderboard] = useState<{ name: string; score: number }[]>([]); // Add type definition for leaderboard state
 
   // Enhanced stats loading with error handling
   const loadPlayerStats = useCallback(async () => {
     try {
       setRefreshing(true);
-      // Here you would load player stats from your storage
-      // For now using dummy data
+      // Simulate loading player stats (replace with actual logic)
       setPlayerStats({
         gamesPlayed: 10,
         highScore: 1000,
       });
     } catch (error) {
-      console.error('Error loading stats:', error);
-      // Show error message to user
+      console.error('Error while loading player stats:', error);
+      Alert.alert('Error', 'Failed to load player stats. Please try again later.');
     } finally {
       setRefreshing(false);
     }
   }, []);
+
+  // Enhanced error handling for leaderboard fetch
+  useEffect(() => {
+    async function fetchLeaderboard() {
+      try {
+        const { data, error } = await supabase
+          .from('leaderboard')
+          .select('display_name, score')
+          .order('score', { ascending: false });
+
+        if (error) {
+          console.error('Supabase error while fetching leaderboard:', error);
+          Alert.alert('Error', 'Failed to fetch leaderboard data. Please try again later.');
+          return;
+        }
+
+        if (!data) {
+          console.warn('No leaderboard data returned from Supabase.');
+          Alert.alert('Notice', 'No leaderboard data available at the moment.');
+          return;
+        }
+
+        setLeaderboard(data.map(entry => ({
+          name: entry.display_name,
+          score: entry.score,
+        })));
+      } catch (error) {
+        console.error('Unexpected error while fetching leaderboard:', error);
+        Alert.alert('Error', 'An unexpected error occurred while fetching leaderboard data.');
+      }
+    }
+
+    fetchLeaderboard();
+  }, []); // Fetch leaderboard data on a component mount
 
   // Screen focus effect with optimized cleanup and state management
   useFocusEffect(
@@ -50,7 +87,7 @@ export default function HomeScreen() {
         setIsLoading(true);
         try {
           await loadPlayerStats();
-          // Only update state if component is still mounted
+          // Only update state if the component is still mounted
           if (isActive) {
             setPlayerStats(prevStats => ({
               ...prevStats,
@@ -70,7 +107,7 @@ export default function HomeScreen() {
       };
 
       loadData();
-
+      
       // Cleanup function
       return () => {
         isActive = false;
@@ -82,40 +119,39 @@ export default function HomeScreen() {
 
   // Navigation event listeners
   useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
-      if (state.currentGame) {
-        e.preventDefault();
-        
-        Alert.alert(
-          'Active Game',
-          'You have an active game in progress. What would you like to do?',
-          [
-            { 
-              text: "Continue Game", 
-              style: 'cancel', 
-              onPress: () => {
-                router.push('/game');
-              }
-            },
-            { 
-              text: "Stay Here", 
-              style: 'default',
-              onPress: () => {} 
-            },
-            {
-              text: 'Quit Game',
-              style: 'destructive',
-              onPress: () => {
-                dispatch({ type: 'END_GAME' });
-                navigation.dispatch(e.data.action);
-              },
-            },
-          ]
-        );
-      }
-    });
+      return navigation.addListener('beforeRemove', (e) => {
+        if (state.currentGame) {
+            e.preventDefault();
 
-    return unsubscribe;
+            Alert.alert(
+                'Active Game',
+                'You have an active game in progress. What would you like to do?',
+                [
+                    {
+                        text: "Continue Game",
+                        style: 'cancel',
+                        onPress: () => {
+                            router.push('/play');
+                        }
+                    },
+                    {
+                        text: "Stay Here",
+                        style: 'default',
+                        onPress: () => {
+                        }
+                    },
+                    {
+                        text: 'Quit Game',
+                        style: 'destructive',
+                        onPress: () => {
+                            dispatch({type: 'END_GAME'});
+                            navigation.dispatch(e.data.action);
+                        },
+                    },
+                ]
+            );
+        }
+    });
   }, [navigation, state.currentGame, dispatch, router]);
 
   const onRefresh = useCallback(async () => {
@@ -134,7 +170,7 @@ export default function HomeScreen() {
   // Enhanced focus effect with state persistence
     useFocusEffect(
     useCallback(() => {
-      let timeoutId: number;
+      let timeoutId: ReturnType<typeof setTimeout>;
       
       const handleFocus = async () => {
         tabFocusHandler();
@@ -177,51 +213,16 @@ export default function HomeScreen() {
             onPress: () => {
               dispatch({ type: 'END_GAME' });
               updateStats();
-              router.push('/game');
+              router.push('/play');
             }
           }
         ]
       );
     } else {
       updateStats();
-      router.push('/game');
+      router.push('/play');
     }
   }, [state.currentGame, dispatch, router, updateStats]);
-
-  const { setOptions } = useNavigation();
-
-  // Configure navigation options, animations and loading states
-  useEffect(() => {
-    setOptions({
-      tabBarBadge: state.currentGame ? '1' : undefined,
-      tabBarBadgeStyle: {
-        backgroundColor: Theme.colors.accent,
-      },
-      animation: 'fade',
-      gestureEnabled: !state.currentGame,
-      gestureDirection: 'horizontal',
-      tabBarStyle: {
-        ...(navigation as any).getState().routes[0].state?.history?.length > 0 && isLoading 
-          ? { display: 'none' }
-          : undefined,
-      },
-      // Prevent tab press if game in progress
-      tabBarButton: (props: React.ComponentProps<typeof Pressable>) => (
-        <Pressable
-          {...props}
-          onPress={(event) => {
-            if (state.currentGame) {
-              Alert.alert('Game in Progress', 'Please finish or end your current game.');
-              return;
-            }
-            if (props.onPress) {
-              props.onPress(event);
-            }
-          }}
-        />
-      ),
-    });
-  }, [state.currentGame, setOptions, isLoading, navigation]);
 
   return (
     <ScrollView 
@@ -269,14 +270,12 @@ export default function HomeScreen() {
           <PixelButton
             title="New Game"
             onPress={handleStartNewGame}
-            type="primary"
             style={styles.gridButton}
             disabled={refreshing || isLoading}
           />
           <PixelButton
             title="Tutorial"
             onPress={() => router.push('/tutorial')}
-            type="secondary"
             style={styles.gridButton}
             disabled={refreshing || isLoading}
           />
@@ -296,6 +295,30 @@ export default function HomeScreen() {
             </PixelText>
           )}
         </View>
+
+        {/* Leaderboard Section */}
+        <View style={styles.leaderboardContainer}>
+          <PixelText size="large" style={styles.leaderboardTitle}>
+            Leaderboard
+          </PixelText>
+          {leaderboard.map((entry, index) => (
+            <View key={index} style={styles.leaderboardRow}>
+              <PixelText size="regular">{index + 1}. {entry.name}</PixelText>
+              <PixelText size="regular">{entry.score}</PixelText>
+            </View>
+          ))}
+        </View>
+
+        {/* Logout Button - Only visible if session exists */}
+        {session && (
+          <View style={styles.logoutContainer}>
+            <PixelButton
+              title="Cerrar Sesión"
+              onPress={signOut}
+              style={styles.logoutButton}
+            />
+          </View>
+        )}
 
         {/* Footer */}
         <PixelText size="small" style={styles.footer}>
@@ -384,5 +407,39 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  leaderboardContainer: {
+    marginTop: 32,
+    width: '100%',
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: Theme.colors.cardFace,
+  },
+  leaderboardTitle: {
+    marginBottom: 16,
+    color: Theme.colors.text,
+  },
+  leaderboardRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: Theme.colors.border,
+  },
+  logoutContainer: {
+    marginTop: 24,
+    width: '100%',
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: Theme.colors.cardFace,
+    alignItems: 'center',
+  },
+  logoutButton: {
+    minWidth: 150,
+    elevation: 2, // Android shadow
+    shadowColor: Theme.colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
 });

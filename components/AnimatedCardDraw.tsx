@@ -1,3 +1,4 @@
+// This component is currently unused in the project. Consider removing it or integrating it where necessary.
 // components/AnimatedCardDraw.tsx
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
@@ -11,7 +12,7 @@ interface CardProps {
   };
 }
 
-export default function AnimatedCardDraw({ card }: CardProps) {
+function AnimatedCardDraw({ card }: CardProps){
   const translateY = useSharedValue(50);
   const opacity = useSharedValue(0);
 
@@ -33,9 +34,7 @@ export default function AnimatedCardDraw({ card }: CardProps) {
       </Animated.View>
     </>
   );
-}
-
-const styles = StyleSheet.create({
+} const styles = StyleSheet.create({
   card: {
     backgroundColor: "#fff",
     padding: 16,
@@ -48,3 +47,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
+
+export default AnimatedCardDraw;

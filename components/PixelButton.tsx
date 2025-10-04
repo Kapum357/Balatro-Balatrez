@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { Theme } from '../constants/Theme';
-import { usePressScale } from '../utils/usePressScale';
+import { Theme } from '@/constants/Theme';
+import { usePressScale } from '@/utils/usePressScale';
 
 interface PixelButtonProps {
-  title: string;
+  title?: string;
+  children?: ReactNode;
   onPress: () => void;
-  type?: 'primary' | 'secondary' | 'danger';
+  variant?: 'primary' | 'secondary' | 'danger';
   disabled?: boolean;
   small?: boolean;
   style?: object;
 }
 
 export function PixelButton({
-  title, onPress, type = 'primary', disabled = false, small = false, style
+  title,
+  children,
+  onPress,
+  variant = 'primary',
+  disabled = false,
+  small = false,
+  style
 }: PixelButtonProps) {
-  const { onPressIn, onPressOut, animatedStyle } = usePressScale(0.93);
+  const { onPressIn, onPressOut, animatedStyle } = usePressScale(0.93); // Add animation scaling
 
   const colors = {
     primary: Theme.colors.accent,
@@ -34,17 +41,19 @@ export function PixelButton({
         disabled={disabled}
         style={({ pressed }) => [
           styles.base,
-          { backgroundColor: colors[type] },
+          { backgroundColor: colors[variant] },
           small && styles.small,
           disabled && styles.disabled,
           pressed && styles.pressed
         ]}
       >
-        <Animated.View style={[animatedStyle]}>
-          <Text style={[
-            styles.text,
-            disabled && styles.textDisabled
-          ]}>{title}</Text>
+        <Animated.View style={[animatedStyle]}> {/* Apply animation */}
+          {children || (
+            <Text style={[
+              styles.text,
+              disabled && styles.textDisabled
+            ]}>{title}</Text>
+          )}
         </Animated.View>
       </Pressable>
     </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Theme } from '../constants/Theme';
+import { Theme } from '@/constants/Theme';
 
 interface PixelCardProps {
   suit: 'H' | 'D' | 'S' | 'C' | 'JOKER';

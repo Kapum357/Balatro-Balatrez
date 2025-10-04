@@ -1,5 +1,5 @@
 // utils/pokerGuide.ts
-import { PokerHandGuide } from '../.expo/types/poker';
+import { PokerHandGuide } from '@/.expo/types/poker';
 
 export const POKER_HANDS: PokerHandGuide[] = [
   {

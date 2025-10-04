@@ -1,5 +1,5 @@
 // managers/shopManager.ts
-import { Enhancement, Joker, TarotCard } from '../.expo/types/specialCards';
+import { Enhancement, Joker, TarotCard } from '@/.expo/types/specialCards';
 
 export class ShopManager {
     private jokers: Joker[] = [];
@@ -39,6 +39,7 @@ export class ShopManager {
         return null;
     }
 
+    // The method 'addChips' is currently unused in the project. Consider removing it or integrating it where necessary.
     addChips(amount: number) {
         this.chips += amount;
     }

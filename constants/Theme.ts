@@ -14,7 +14,10 @@ export const Theme = {
     success: '#48d968',
     cardFace: '#2a2f33',
     cardEdge: '#0d0d0f',
-    cardHighlight: '#3b4248'
+    cardHighlight: '#3b4248',
+    // Agregando los colores faltantes
+    background: '#1c1f24', // mismo que bg para mantener consistencia
+    surface: '#2a2f33'    // mismo que cardFace para mantener consistencia
   },
   spacing: { xs: 4, sm: 8, md: 16, lg: 24 },
   radius: { none: 0, sm: 3, md: 6 },

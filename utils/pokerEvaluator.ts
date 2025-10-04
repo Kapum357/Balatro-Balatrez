@@ -1,6 +1,6 @@
 // utils/pokerEvaluator.ts
-import { Card } from '../.expo/types/card';
-import { PokerHandType } from '../.expo/types/poker';
+import { Card } from '@/.expo/types/card';
+import { PokerHandType } from '@/.expo/types/poker';
 import { POKER_HANDS } from './pokerGuide';
 
 interface EvaluatedHand {

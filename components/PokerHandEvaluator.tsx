@@ -1,14 +1,15 @@
+// This component is currently unused in the project. Consider removing it or integrating it where necessary.
 // components/PokerHandEvaluator.tsx
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { Card } from '../.expo/types/card';
-import { evaluateHand } from '../utils/pokerEvaluator';
+import { Card } from '@/.expo/types/card';
+import { evaluateHand } from '@/utils/pokerEvaluator';
 
 interface Props {
   hand: Card[];
 }
 
-export default function PokerHandEvaluator({ hand }: Props) {
+function PokerHandEvaluator({ hand }: Props){
   const [score, setScore] = useState<number | null>(null);
   const evaluatedHands = evaluateHand(hand); // Devuelve un array de objetos EvaluatedHand
   const bestHand = evaluatedHands && evaluatedHands.length > 0
@@ -38,9 +39,7 @@ export default function PokerHandEvaluator({ hand }: Props) {
       {score !== null && <Text>Evaluated Score: {score}</Text>}
     </View>
   );
-}
-
-const styles = StyleSheet.create({
+} const styles = StyleSheet.create({
   container: {
     padding: 16,
     alignItems: 'center',
@@ -51,3 +50,5 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 });
+
+export default PokerHandEvaluator;

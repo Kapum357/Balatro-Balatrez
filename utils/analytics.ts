@@ -5,41 +5,68 @@ const analytics = {
     }
 };
 
+interface GameSessionAnalytics {
+    expansionsActive: Set<string>;
+    gameMode: string;
+    duration: number;
+    finalScore: number;
+    activeDays?: number;
+    onlineMatches?: number;
+}
+
 export class GameAnalytics {
     trackGameSession({
         expansionsActive,
         gameMode,
         duration,
-        finalScore
-    }: GameSessionData) {
-        // Seguimiento de métricas
-        analytics.logEvent('game_completed', {
+        finalScore,
+        activeDays = 1,
+        onlineMatches = 0
+    }: GameSessionAnalytics) {
+        // Seguimiento de métricas de juego y retención en un solo evento
+        analytics.logEvent('game_session', {
+            // Métricas del juego
             expansions: Array.from(expansionsActive),
             mode: gameMode,
             timeSpent: duration,
-            score: finalScore
+            score: finalScore,
+            // Métricas de retención
+            daysActive: activeDays,
+            expansionsOwned: Array.from(expansionsActive).length,
+            multiplayerGames: onlineMatches,
+            timestamp: new Date().toISOString()
         });
     }
-    
-    trackRetention(playerData: PlayerData) {
-        // Análisis de retención
-        analytics.logEvent('player_retention', {
-            daysActive: playerData.activeDays,
-            expansionsOwned: playerData.expansions.length,
-            multiplayerGames: playerData.onlineMatches
+
+    // --- Chat analytics (console-based; keep signatures stable) ---
+    trackChatSessionStart(channelId: string, context: { isDirect: boolean; memberCount: number }) {
+        analytics.logEvent('chat_session_start', {
+            channelId,
+            isDirect: context.isDirect,
+            members: context.memberCount,
+            ts: Date.now()
         });
     }
-}
 
-interface GameSessionData {
-  expansionsActive: Set<string>;
-  gameMode: string;
-  duration: number;
-  finalScore: number;
-}
+    trackChatMessageSent(meta: { channelId: string; messageId: string; hasTempId: boolean; bytes: number }) {
+        analytics.logEvent('chat_message_sent', {
+            ...meta,
+            ts: Date.now()
+        });
+    }
 
-interface PlayerData {
-  activeDays: number;
-  expansions: string[];
-  onlineMatches: number;
+    trackChatMessageFailed(meta: { channelId: string; clientTempId: string; error: string }) {
+        analytics.logEvent('chat_message_failed', {
+            ...meta,
+            ts: Date.now()
+        });
+    }
+
+    trackChatSubscribed(channelId: string) {
+        analytics.logEvent('chat_subscribed', { channelId, ts: Date.now() });
+    }
+
+    trackChatUnsubscribed(channelId: string) {
+        analytics.logEvent('chat_unsubscribed', { channelId, ts: Date.now() });
+    }
 }

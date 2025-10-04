@@ -1,7 +1,8 @@
+// This component is currently unused in the project. Consider removing it or integrating it where necessary.
 // components/PixelLayout.tsx
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
-import { Theme } from '../constants/Theme';
+import { Theme } from '@/constants/Theme';
 
 interface PixelLayoutProps extends ViewProps {
     children: React.ReactNode;

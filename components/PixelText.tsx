@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
-import { Theme } from '../constants/Theme';
-import { ResponsiveUI } from '../utils/responsive';
+import { Theme } from '@/constants/Theme';
+import { ResponsiveUI } from '@/utils/responsive';
 
 interface PixelTextProps extends TextProps {
   size?: keyof typeof Theme.typography.sizes;
