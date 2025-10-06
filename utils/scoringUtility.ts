@@ -1,36 +1,29 @@
-import { Card } from '@/.expo/types/card';
-import { evaluateHand } from './pokerEvaluator';
+import {Card} from '@/.expo/types/card';
+import {evaluateHand} from './pokerEvaluator';
 
-interface ScoringOptions {
-  discards: number; // Number of cards discarded
+export interface ScoringOptions {
+    discards: number; // Number of cards discarded
+    roundType?: string;
 }
 
-export function calculateHandScore(playerHand: Card[], options: ScoringOptions): number {
-  // Evaluate the player's hand
-  const evaluatedHands = evaluateHand(playerHand);
+export interface ScoreBreakdown {
+    chips: number;
+    mult: number;
+    total: number;
+    bestHandType: string;
+}
 
-  // Ensure evaluatedHands is an array
-  const handsArray = Array.isArray(evaluatedHands) ? evaluatedHands : [evaluatedHands];
+export function calculateHandScore(playerHand: Card[], options: ScoringOptions): ScoreBreakdown {
+    const evaluatedHands = evaluateHand(playerHand);
+    const handsArray = Array.isArray(evaluatedHands) ? evaluatedHands : [evaluatedHands];
+    const bestHand = handsArray.reduce((best, current) => current.score > best.score ? current : best);
 
-  // Find the highest-scoring hand
-  const bestHand = handsArray.reduce((best, current) =>
-    current.score > best.score ? current : best,
-  );
-
-  let score = bestHand.score; // Base score from the best hand
-  console.log(`Best hand: ${bestHand.type}, Base score: ${score}`);
-
-  // Apply bonuses
-  if (options.discards === 0) {
-    score += 50; // Bonificación por no descartar
-  }
-
-  // Apply penalties
-  if (options.discards > 3) {
-    score -= 20; // Penalización por descartar demasiado
-  }
-
-  console.log(`Final score: ${score}`);
-  return score;
+    let chips = bestHand.score;
+    let mult = 1;
+    if (options.discards === 0) chips += 50;
+    if (options.discards > 3) chips -= 20;
+    if (options.roundType === 'hard') mult *= 1.5;
+    const total = Math.max(0, Math.floor(chips * mult));
+    return {chips: Math.max(0, Math.floor(chips)), mult, total, bestHandType: bestHand.type};
 }
 

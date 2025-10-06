@@ -12,434 +12,434 @@ import {useAuth} from '@/contexts/AuthContext'; // Import Auth context
 import {supabase} from '@/utils/supabaseClient'; // Import Supabase client
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
-  const router = useRouter();
-  const { state, dispatch } = useGameContext();
-  const { signOut, session } = useAuth(); // Get signOut and session from Auth context
-  const [refreshing, setRefreshing] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [playerStats, setPlayerStats] = useState({
-    gamesPlayed: 0,
-    highScore: 0,
-    // Add more stats as needed
-  });
-  const [leaderboard, setLeaderboard] = useState<{ name: string; score: number }[]>([]); // Add type definition for leaderboard state
+    const navigation = useNavigation();
+    const router = useRouter();
+    const {state, dispatch} = useGameContext();
+    const {signOut, session} = useAuth(); // Get signOut and session from Auth context
+    const [refreshing, setRefreshing] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [playerStats, setPlayerStats] = useState({
+        gamesPlayed: 0,
+        highScore: 0,
+        // Add more stats as needed
+    });
+    const [leaderboard, setLeaderboard] = useState<{ name: string; score: number }[]>([]); // Add type definition for leaderboard state
 
-  // Enhanced stats loading with error handling
-  const loadPlayerStats = useCallback(async () => {
-    try {
-      setRefreshing(true);
-      // Simulate loading player stats (replace with actual logic)
-      setPlayerStats({
-        gamesPlayed: 10,
-        highScore: 1000,
-      });
-    } catch (error) {
-      console.error('Error while loading player stats:', error);
-      Alert.alert('Error', 'Failed to load player stats. Please try again later.');
-    } finally {
-      setRefreshing(false);
-    }
-  }, []);
-
-  // Enhanced error handling for leaderboard fetch
-  useEffect(() => {
-    async function fetchLeaderboard() {
-      try {
-        const { data, error } = await supabase
-          .from('leaderboard')
-          .select('display_name, score')
-          .order('score', { ascending: false });
-
-        if (error) {
-          console.error('Supabase error while fetching leaderboard:', error);
-          Alert.alert('Error', 'Failed to fetch leaderboard data. Please try again later.');
-          return;
-        }
-
-        if (!data) {
-          console.warn('No leaderboard data returned from Supabase.');
-          Alert.alert('Notice', 'No leaderboard data available at the moment.');
-          return;
-        }
-
-        setLeaderboard(data.map(entry => ({
-          name: entry.display_name,
-          score: entry.score,
-        })));
-      } catch (error) {
-        console.error('Unexpected error while fetching leaderboard:', error);
-        Alert.alert('Error', 'An unexpected error occurred while fetching leaderboard data.');
-      }
-    }
-
-    fetchLeaderboard();
-  }, []); // Fetch leaderboard data on a component mount
-
-  // Screen focus effect with optimized cleanup and state management
-  useFocusEffect(
-    useCallback(() => {
-      let isActive = true;
-
-      const loadData = async () => {
-        if (!isActive) return;
-        
-        setIsLoading(true);
+    // Enhanced stats loading with error handling
+    const loadPlayerStats = useCallback(async () => {
         try {
-          await loadPlayerStats();
-          // Only update state if the component is still mounted
-          if (isActive) {
-            setPlayerStats(prevStats => ({
-              ...prevStats,
-              lastUpdated: new Date().toISOString()
-            }));
-          }
+            setRefreshing(true);
+            // Simulate loading player stats (replace with actual logic)
+            setPlayerStats({
+                gamesPlayed: 10,
+                highScore: 1000,
+            });
         } catch (error) {
-          console.error('Failed to load player stats:', error);
-          if (isActive) {
-            Alert.alert('Error', 'Failed to load player stats');
-          }
+            console.error('Error while loading player stats:', error);
+            Alert.alert('Error', 'Failed to load player stats. Please try again later.');
         } finally {
-          if (isActive) {
-            setIsLoading(false);
-          }
+            setRefreshing(false);
         }
-      };
+    }, []);
 
-      loadData();
-      
-      // Cleanup function
-      return () => {
-        isActive = false;
-        setIsLoading(false);
+    // Enhanced error handling for leaderboard fetch
+    useEffect(() => {
+        async function fetchLeaderboard() {
+            try {
+                const {data, error} = await supabase
+                    .from('leaderboard')
+                    .select('display_name, score')
+                    .order('score', {ascending: false});
+
+                if (error) {
+                    console.error('Supabase error while fetching leaderboard:', error);
+                    Alert.alert('Error', 'Failed to fetch leaderboard data. Please try again later.');
+                    return;
+                }
+
+                if (!data) {
+                    console.warn('No leaderboard data returned from Supabase.');
+                    Alert.alert('Notice', 'No leaderboard data available at the moment.');
+                    return;
+                }
+
+                setLeaderboard(data.map(entry => ({
+                    name: entry.display_name,
+                    score: entry.score,
+                })));
+            } catch (error) {
+                console.error('Unexpected error while fetching leaderboard:', error);
+                Alert.alert('Error', 'An unexpected error occurred while fetching leaderboard data.');
+            }
+        }
+
+        fetchLeaderboard();
+    }, []); // Fetch leaderboard data on a component mount
+
+    // Screen focus effect with optimized cleanup and state management
+    useFocusEffect(
+        useCallback(() => {
+            let isActive = true;
+
+            const loadData = async () => {
+                if (!isActive) return;
+
+                setIsLoading(true);
+                try {
+                    await loadPlayerStats();
+                    // Only update state if the component is still mounted
+                    if (isActive) {
+                        setPlayerStats(prevStats => ({
+                            ...prevStats,
+                            lastUpdated: new Date().toISOString()
+                        }));
+                    }
+                } catch (error) {
+                    console.error('Failed to load player stats:', error);
+                    if (isActive) {
+                        Alert.alert('Error', 'Failed to load player stats');
+                    }
+                } finally {
+                    if (isActive) {
+                        setIsLoading(false);
+                    }
+                }
+            };
+
+            loadData();
+
+            // Cleanup function
+            return () => {
+                isActive = false;
+                setIsLoading(false);
+                setRefreshing(false);
+            };
+        }, [loadPlayerStats])
+    );
+
+    // Navigation event listeners
+    useEffect(() => {
+        return navigation.addListener('beforeRemove', (e) => {
+            if (state.currentGame) {
+                e.preventDefault();
+
+                Alert.alert(
+                    'Active Game',
+                    'You have an active game in progress. What would you like to do?',
+                    [
+                        {
+                            text: "Continue Game",
+                            style: 'cancel',
+                            onPress: () => {
+                                router.push('/play');
+                            }
+                        },
+                        {
+                            text: "Stay Here",
+                            style: 'default',
+                            onPress: () => {
+                            }
+                        },
+                        {
+                            text: 'Quit Game',
+                            style: 'destructive',
+                            onPress: () => {
+                                dispatch({type: 'END_GAME'});
+                                navigation.dispatch(e.data.action);
+                            },
+                        },
+                    ]
+                );
+            }
+        });
+    }, [navigation, state.currentGame, dispatch, router]);
+
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        await loadPlayerStats();
         setRefreshing(false);
-      };
-    }, [loadPlayerStats])
-  );
+    }, [loadPlayerStats]);
 
-  // Navigation event listeners
-  useEffect(() => {
-      return navigation.addListener('beforeRemove', (e) => {
+    // Handle tab-specific focus events with state persistence
+    const tabFocusHandler = useCallback(() => {
+        if (!state.currentGame && !isLoading) {
+            loadPlayerStats();
+        }
+    }, [state.currentGame, isLoading, loadPlayerStats]);
+
+    // Enhanced focus effect with state persistence
+    useFocusEffect(
+        useCallback(() => {
+            let timeoutId: ReturnType<typeof setTimeout>;
+
+            const handleFocus = async () => {
+                tabFocusHandler();
+
+                // Persist navigation state after delay
+                timeoutId = setTimeout(() => {
+                    // Optionally, handle navigation state here if needed
+                    // For Expo Router, you could use router.setParams if you need to set params
+                }, 100);
+            };
+
+            handleFocus();
+
+            return () => {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+            };
+        }, [tabFocusHandler])
+    );
+
+    const updateStats = useCallback(() => {
+        dispatch({
+            type: 'UPDATE_STATS',
+            payload: {gamesPlayed: state.playerStats.gamesPlayed + 1},
+        });
+    }, [dispatch, state.playerStats.gamesPlayed]);
+
+    // Enhanced game start handler
+    const handleStartNewGame = useCallback(() => {
         if (state.currentGame) {
-            e.preventDefault();
-
             Alert.alert(
-                'Active Game',
-                'You have an active game in progress. What would you like to do?',
+                'New Game',
+                'Starting a new game will end your current game. Continue?',
                 [
+                    {text: 'Cancel', style: 'cancel'},
                     {
-                        text: "Continue Game",
-                        style: 'cancel',
-                        onPress: () => {
-                            router.push('/play');
-                        }
-                    },
-                    {
-                        text: "Stay Here",
-                        style: 'default',
-                        onPress: () => {
-                        }
-                    },
-                    {
-                        text: 'Quit Game',
+                        text: 'New Game',
                         style: 'destructive',
                         onPress: () => {
                             dispatch({type: 'END_GAME'});
-                            navigation.dispatch(e.data.action);
-                        },
-                    },
+                            updateStats();
+                            router.push('/play');
+                        }
+                    }
                 ]
             );
+        } else {
+            updateStats();
+            router.push('/play');
         }
-    });
-  }, [navigation, state.currentGame, dispatch, router]);
+    }, [state.currentGame, dispatch, router, updateStats]);
 
-  const onRefresh = useCallback(async () => {
-    setRefreshing(true);
-    await loadPlayerStats();
-    setRefreshing(false);
-  }, [loadPlayerStats]);
-
-  // Handle tab-specific focus events with state persistence
-  const tabFocusHandler = useCallback(() => {
-    if (!state.currentGame && !isLoading) {
-      loadPlayerStats();
-    }
-  }, [state.currentGame, isLoading, loadPlayerStats]);
-
-  // Enhanced focus effect with state persistence
-    useFocusEffect(
-    useCallback(() => {
-      let timeoutId: ReturnType<typeof setTimeout>;
-      
-      const handleFocus = async () => {
-        tabFocusHandler();
-        
-        // Persist navigation state after delay
-        timeoutId = setTimeout(() => {
-          // Optionally, handle navigation state here if needed
-          // For Expo Router, you could use router.setParams if you need to set params
-        }, 100);
-      };
-
-      handleFocus();
-
-      return () => {
-        if (timeoutId) {
-          clearTimeout(timeoutId);
-        }
-      };
-    }, [tabFocusHandler])
-  );
-
-  const updateStats = useCallback(() => {
-    dispatch({
-      type: 'UPDATE_STATS',
-      payload: { gamesPlayed: state.playerStats.gamesPlayed + 1 },
-    });
-  }, [dispatch, state.playerStats.gamesPlayed]);
-
-  // Enhanced game start handler
-  const handleStartNewGame = useCallback(() => {
-    if (state.currentGame) {
-      Alert.alert(
-        'New Game',
-        'Starting a new game will end your current game. Continue?',
-        [
-          { text: 'Cancel', style: 'cancel' },
-          { 
-            text: 'New Game',
-            style: 'destructive',
-            onPress: () => {
-              dispatch({ type: 'END_GAME' });
-              updateStats();
-              router.push('/play');
+    return (
+        <ScrollView
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollViewContent}
+            refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                    tintColor={Theme.colors.accent}
+                    colors={[Theme.colors.accent]}
+                />
             }
-          }
-        ]
-      );
-    } else {
-      updateStats();
-      router.push('/play');
-    }
-  }, [state.currentGame, dispatch, router, updateStats]);
+        >
+            <View style={styles.container}>
+                {/* Logo or Banner */}
+                <Image
+                    source={require("../assets/images/icon.png")}
+                    style={styles.logo}
+                    resizeMode="contain"
+                />
 
-  return (
-    <ScrollView 
-      style={styles.scrollView}
-      contentContainerStyle={styles.scrollViewContent}
-      refreshControl={
-        <RefreshControl 
-          refreshing={refreshing} 
-          onRefresh={onRefresh}
-          tintColor={Theme.colors.accent}
-          colors={[Theme.colors.accent]}
-        />
-      }
-    >
-      <View style={styles.container}>
-        {/* Logo or Banner */}
-        <Image
-          source={require("../assets/images/icon.png")}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+                {/* Welcome Message */}
+                <PixelText size="xxlarge" style={styles.title}>
+                    Welcome to Balatro
+                </PixelText>
 
-        {/* Welcome Message */}
-        <PixelText size="xxlarge" style={styles.title}>
-          Welcome to Balatro
-        </PixelText>
+                {/* Player Stats */}
+                <View style={styles.statsContainer}>
+                    <PixelText size="large" style={styles.statsTitle}>
+                        Your Stats
+                    </PixelText>
+                    <View style={styles.statsRow}>
+                        <PixelText size="regular">
+                            Games Played: {state.playerStats.gamesPlayed}
+                        </PixelText>
+                        <PixelText size="regular">
+                            High Score: {playerStats.highScore}
+                        </PixelText>
+                    </View>
+                </View>
 
-        {/* Player Stats */}
-        <View style={styles.statsContainer}>
-          <PixelText size="large" style={styles.statsTitle}>
-            Your Stats
-          </PixelText>
-          <View style={styles.statsRow}>
-            <PixelText size="regular">
-              Games Played: {state.playerStats.gamesPlayed}
-            </PixelText>
-            <PixelText size="regular">
-              High Score: {playerStats.highScore}
-            </PixelText>
-          </View>
-        </View>
+                {/* Quick Actions */}
+                <View style={styles.buttonGrid}>
+                    <PixelButton
+                        title="New Game"
+                        onPress={handleStartNewGame}
+                        style={styles.gridButton}
+                        disabled={refreshing || isLoading}
+                    />
+                    <PixelButton
+                        title="Tutorial"
+                        onPress={() => router.push('/tutorial')}
+                        style={styles.gridButton}
+                        disabled={refreshing || isLoading}
+                    />
+                </View>
 
-        {/* Quick Actions */}
-        <View style={styles.buttonGrid}>
-          <PixelButton
-            title="New Game"
-            onPress={handleStartNewGame}
-            style={styles.gridButton}
-            disabled={refreshing || isLoading}
-          />
-          <PixelButton
-            title="Tutorial"
-            onPress={() => router.push('/tutorial')}
-            style={styles.gridButton}
-            disabled={refreshing || isLoading}
-          />
-        </View>
+                {/* Active Game Info */}
+                <View style={styles.activeGameContainer}>
+                    {isLoading ? (
+                        <ActivityIndicator color={Theme.colors.accent}/>
+                    ) : state.currentGame ? (
+                        <PixelText size="medium" style={styles.activeGameText}>
+                            Game in Progress: {state.currentGame.name}
+                        </PixelText>
+                    ) : (
+                        <PixelText size="medium" style={styles.activeGameText}>
+                            No active game. Start a new one!
+                        </PixelText>
+                    )}
+                </View>
 
-        {/* Active Game Info */}
-        <View style={styles.activeGameContainer}>
-          {isLoading ? (
-            <ActivityIndicator color={Theme.colors.accent} />
-          ) : state.currentGame ? (
-            <PixelText size="medium" style={styles.activeGameText}>
-              Game in Progress: {state.currentGame.name}
-            </PixelText>
-          ) : (
-            <PixelText size="medium" style={styles.activeGameText}>
-              No active game. Start a new one!
-            </PixelText>
-          )}
-        </View>
+                {/* Leaderboard Section */}
+                <View style={styles.leaderboardContainer}>
+                    <PixelText size="large" style={styles.leaderboardTitle}>
+                        Leaderboard
+                    </PixelText>
+                    {leaderboard.map((entry, index) => (
+                        <View key={index} style={styles.leaderboardRow}>
+                            <PixelText size="regular">{index + 1}. {entry.name}</PixelText>
+                            <PixelText size="regular">{entry.score}</PixelText>
+                        </View>
+                    ))}
+                </View>
 
-        {/* Leaderboard Section */}
-        <View style={styles.leaderboardContainer}>
-          <PixelText size="large" style={styles.leaderboardTitle}>
-            Leaderboard
-          </PixelText>
-          {leaderboard.map((entry, index) => (
-            <View key={index} style={styles.leaderboardRow}>
-              <PixelText size="regular">{index + 1}. {entry.name}</PixelText>
-              <PixelText size="regular">{entry.score}</PixelText>
+                {/* Logout Button - Only visible if session exists */}
+                {session && (
+                    <View style={styles.logoutContainer}>
+                        <PixelButton
+                            title="Cerrar Sesión"
+                            onPress={signOut}
+                            style={styles.logoutButton}
+                        />
+                    </View>
+                )}
+
+                {/* Footer */}
+                <PixelText size="small" style={styles.footer}>
+                    © 2025 Balatro by LocalThunk
+                </PixelText>
             </View>
-          ))}
-        </View>
-
-        {/* Logout Button - Only visible if session exists */}
-        {session && (
-          <View style={styles.logoutContainer}>
-            <PixelButton
-              title="Cerrar Sesión"
-              onPress={signOut}
-              style={styles.logoutButton}
-            />
-          </View>
-        )}
-
-        {/* Footer */}
-        <PixelText size="small" style={styles.footer}>
-          © 2025 Balatro by LocalThunk
-        </PixelText>
-      </View>
-    </ScrollView>
-  );
+        </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-    backgroundColor: Theme.colors.bg, // Updated from 'background' to 'bg'
-  },
-  scrollViewContent: {
-    flexGrow: 1,
-    paddingBottom: 16, // Add padding for bottom tab bar
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 16,
-  },
-  title: {
-    marginBottom: 16,
-    textAlign: 'center',
-    color: Theme.colors.accent, // Updated from 'primary' to 'accent'
-  },
-  statsContainer: {
-    width: '100%',
-    backgroundColor: Theme.colors.cardFace, // Updated from 'card' to 'cardFace'
-    padding: 16,
-    borderRadius: 8,
-    marginVertical: 16,
-  },
-  statsTitle: {
-    marginBottom: 8,
-    color: Theme.colors.text,
-  },
-  statsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 8,
-  },
-  buttonGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 16,
-    marginTop: 16,
-  },
-  gridButton: {
-    minWidth: 150,
-    elevation: 2, // Android shadow
-    shadowColor: Theme.colors.shadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  activeGameContainer: {
-    marginTop: 24,
-    width: '100%',
-    padding: 16,
-    borderRadius: 8,
-    backgroundColor: Theme.colors.cardFace,
-    alignItems: 'center',
-  },
-  activeGameText: {
-    color: Theme.colors.text,
-  },
-  footer: {
-    marginTop: 32,
-    marginBottom: 16,
-    opacity: 0.7,
-    color: Theme.colors.text,
-  },
-  // Add loading state styles
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  leaderboardContainer: {
-    marginTop: 32,
-    width: '100%',
-    padding: 16,
-    borderRadius: 8,
-    backgroundColor: Theme.colors.cardFace,
-  },
-  leaderboardTitle: {
-    marginBottom: 16,
-    color: Theme.colors.text,
-  },
-  leaderboardRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: Theme.colors.border,
-  },
-  logoutContainer: {
-    marginTop: 24,
-    width: '100%',
-    padding: 16,
-    borderRadius: 8,
-    backgroundColor: Theme.colors.cardFace,
-    alignItems: 'center',
-  },
-  logoutButton: {
-    minWidth: 150,
-    elevation: 2, // Android shadow
-    shadowColor: Theme.colors.shadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
+    scrollView: {
+        flex: 1,
+        backgroundColor: Theme.colors.bg, // Updated from 'background' to 'bg'
+    },
+    scrollViewContent: {
+        flexGrow: 1,
+        paddingBottom: 16, // Add padding for bottom tab bar
+    },
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 16,
+    },
+    logo: {
+        width: 150,
+        height: 150,
+        marginBottom: 16,
+    },
+    title: {
+        marginBottom: 16,
+        textAlign: 'center',
+        color: Theme.colors.accent, // Updated from 'primary' to 'accent'
+    },
+    statsContainer: {
+        width: '100%',
+        backgroundColor: Theme.colors.cardFace, // Updated from 'card' to 'cardFace'
+        padding: 16,
+        borderRadius: 8,
+        marginVertical: 16,
+    },
+    statsTitle: {
+        marginBottom: 8,
+        color: Theme.colors.text,
+    },
+    statsRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 8,
+    },
+    buttonGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: 16,
+        marginTop: 16,
+    },
+    gridButton: {
+        minWidth: 150,
+        elevation: 2, // Android shadow
+        shadowColor: Theme.colors.shadow,
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
+    activeGameContainer: {
+        marginTop: 24,
+        width: '100%',
+        padding: 16,
+        borderRadius: 8,
+        backgroundColor: Theme.colors.cardFace,
+        alignItems: 'center',
+    },
+    activeGameText: {
+        color: Theme.colors.text,
+    },
+    footer: {
+        marginTop: 32,
+        marginBottom: 16,
+        opacity: 0.7,
+        color: Theme.colors.text,
+    },
+    // Add loading state styles
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    leaderboardContainer: {
+        marginTop: 32,
+        width: '100%',
+        padding: 16,
+        borderRadius: 8,
+        backgroundColor: Theme.colors.cardFace,
+    },
+    leaderboardTitle: {
+        marginBottom: 16,
+        color: Theme.colors.text,
+    },
+    leaderboardRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 8,
+        borderBottomWidth: 1,
+        borderBottomColor: Theme.colors.border,
+    },
+    logoutContainer: {
+        marginTop: 24,
+        width: '100%',
+        padding: 16,
+        borderRadius: 8,
+        backgroundColor: Theme.colors.cardFace,
+        alignItems: 'center',
+    },
+    logoutButton: {
+        minWidth: 150,
+        elevation: 2, // Android shadow
+        shadowColor: Theme.colors.shadow,
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
 });

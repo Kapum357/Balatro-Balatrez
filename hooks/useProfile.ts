@@ -1,4 +1,4 @@
-import { useAuth } from '@/contexts/AuthContext';
+import {useAuth} from '@/contexts/AuthContext';
 import {
     createInitialProfile,
     deleteProfile as deleteProfileService,
@@ -6,7 +6,7 @@ import {
     updateProfile as updateProfileService,
     type ProfileError
 } from '@/utils/profilesService';
-import { supabase } from '@/utils/supabaseClient';
+import {supabase} from '@/utils/supabaseClient';
 import {
     Profile,
     ProfileUpdateRequest,
@@ -14,10 +14,10 @@ import {
     UpdateProfileResult,
     DeleteProfileResult
 } from '@/.expo/types/profile'; // Unificar importaciones de Profile
-import { useCallback, useEffect, useState } from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 export function useProfile() {
-    const { session } = useAuth();
+    const {session} = useAuth();
     const [profile, setProfile] = useState<Profile | undefined>(undefined);
     const [error, setError] = useState<ProfileError | undefined>(undefined);
     const [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ export function useProfile() {
         setLoading(true);
         setError(undefined);
         try {
-            const { data, error: supabaseError } = await getCurrentUserProfile(supabase);
+            const {data, error: supabaseError} = await getCurrentUserProfile(supabase);
             if (supabaseError) {
                 setError(supabaseError);
                 return;
@@ -47,7 +47,7 @@ export function useProfile() {
             if (!session?.user?.id) {
                 return {
                     success: false,
-                    error: { message: 'Usuario no autenticado' }
+                    error: {message: 'Usuario no autenticado'}
                 };
             }
             try {
@@ -118,7 +118,7 @@ export function useProfile() {
                         error: result.error
                     };
                 }
-                return { success: true };
+                return {success: true};
             } catch (err) {
                 return {
                     success: false,

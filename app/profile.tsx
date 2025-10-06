@@ -1,15 +1,15 @@
-import { NotificationToast } from '@/components/NotificationToast';
-import { PixelButton } from '@/components/PixelButton';
-import { PixelText } from '@/components/PixelText';
-import { ProfileForm } from '@/components/ProfileForm';
-import { useProfile } from '@/hooks/useProfile';
-import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, Alert, Image, ScrollView, StyleSheet, View } from 'react-native';
+import {NotificationToast} from '@/components/NotificationToast';
+import {PixelButton} from '@/components/PixelButton';
+import {PixelText} from '@/components/PixelText';
+import {ProfileForm} from '@/components/ProfileForm';
+import {useProfile} from '@/hooks/useProfile';
+import React, {useCallback, useState} from 'react';
+import {ActivityIndicator, Alert, Image, ScrollView, StyleSheet, View} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { useRouter } from 'expo-router';
-import { supabase } from '@/utils/supabaseClient';
-import { uploadAvatar } from '@/utils/profilesService';
-import { Profile, ProfileUpdateRequest } from "@/.expo/types/profile";
+import {useRouter} from 'expo-router';
+import {supabase} from '@/utils/supabaseClient';
+import {uploadAvatar} from '@/utils/profilesService';
+import {Profile, ProfileUpdateRequest} from "@/.expo/types/profile";
 
 const styles = StyleSheet.create({
     container: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         padding: 20,
         elevation: 3,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.1,
         shadowRadius: 4,
         marginBottom: 16,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         padding: 20,
         elevation: 3,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.1,
         shadowRadius: 4,
     },
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ProfileScreen() {
-    const { profile, loading, error, createProfile, updateProfile, deleteProfile, refreshProfile } = useProfile();
+    const {profile, loading, error, createProfile, updateProfile, deleteProfile, refreshProfile} = useProfile();
     const [isEditing, setIsEditing] = useState(false);
     const [notification, setNotification] = useState<{
         message: string;
@@ -143,7 +143,7 @@ export default function ProfileScreen() {
     const router = useRouter();
 
     const showNotification = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info') => {
-        setNotification({ message, type });
+        setNotification({message, type});
     }, []);
 
     const handleCreateProfile = async (values: Partial<Profile>) => {
@@ -205,7 +205,7 @@ export default function ProfileScreen() {
             'Confirmar eliminación',
             '¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.',
             [
-                { text: 'Cancelar', style: 'cancel' },
+                {text: 'Cancelar', style: 'cancel'},
                 {
                     text: 'Eliminar',
                     style: 'destructive',
@@ -229,7 +229,7 @@ export default function ProfileScreen() {
 
     const handleImagePick = async () => {
         try {
-            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
             if (status !== 'granted') {
                 Alert.alert('Error', 'Se necesitan permisos para acceder a la galería');
                 return;
@@ -243,10 +243,10 @@ export default function ProfileScreen() {
             });
 
             if (!result.canceled && result.assets[0].uri) {
-                const { data: { user } } = await supabase.auth.getUser();
+                const {data: {user}} = await supabase.auth.getUser();
                 if (!user) return;
 
-                const { url, error } = await uploadAvatar(user.id, result.assets[0].uri);
+                const {url, error} = await uploadAvatar(user.id, result.assets[0].uri);
 
                 if (error) {
                     Alert.alert('Error', 'No se pudo subir la imagen');
@@ -254,7 +254,11 @@ export default function ProfileScreen() {
                 }
 
                 if (url && profile) {
-                    const updateResult: { success: boolean; error?: { message: string; code?: string } | string; data?: Profile } = await updateProfile({
+                    const updateResult: {
+                        success: boolean;
+                        error?: { message: string; code?: string } | string;
+                        data?: Profile
+                    } = await updateProfile({
                         id: profile.id,
                         avatar_url: url,
                         username: profile.username,
@@ -285,8 +289,8 @@ export default function ProfileScreen() {
     if (loading) {
         return (
             <View style={styles.centerContainer}>
-                <ActivityIndicator size="large" color="#3498db" />
-                <PixelText style={{ marginTop: 16, color: '#7f8c8d' }}>
+                <ActivityIndicator size="large" color="#3498db"/>
+                <PixelText style={{marginTop: 16, color: '#7f8c8d'}}>
                     Cargando perfil...
                 </PixelText>
             </View>
@@ -327,12 +331,12 @@ export default function ProfileScreen() {
     return (
         <ScrollView style={styles.container}>
             <PixelText style={styles.title}>Tu Perfil</PixelText>
-            
+
             {!isEditing ? (
                 <View style={styles.profileInfo}>
                     {profile.avatar_url ? (
                         <Image
-                            source={{ uri: profile.avatar_url }}
+                            source={{uri: profile.avatar_url}}
                             style={styles.avatar}
                         />
                     ) : (
@@ -342,7 +346,7 @@ export default function ProfileScreen() {
                             </PixelText>
                         </View>
                     )}
-                    
+
                     <View style={styles.infoContainer}>
                         <PixelText style={profile.username ? styles.username : styles.usernameEmpty}>
                             {profile.username || '(Sin nombre)'}

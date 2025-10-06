@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
-import { Animated, StyleSheet } from 'react-native';
-import { PixelText } from './PixelText';
+import React, {useEffect, useMemo} from 'react';
+import {Animated, StyleSheet} from 'react-native';
+import {PixelText} from './PixelText';
 
 interface NotificationToastProps {
     message: string;
@@ -9,12 +9,12 @@ interface NotificationToastProps {
     onDismiss: () => void;
 }
 
-export function NotificationToast({ 
-    message, 
-    type = 'info', 
-    duration = 3000, 
-    onDismiss 
-}: NotificationToastProps) {
+export function NotificationToast({
+                                      message,
+                                      type = 'info',
+                                      duration = 3000,
+                                      onDismiss
+                                  }: NotificationToastProps) {
     const opacity = useMemo(() => new Animated.Value(0), []);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ export function NotificationToast({
         <Animated.View
             style={[
                 styles.container,
-                { backgroundColor: getBackgroundColor(), opacity }
+                {backgroundColor: getBackgroundColor(), opacity}
             ]}
         >
             <PixelText style={styles.message}>{message}</PixelText>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         padding: 16,
         elevation: 4,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.25,
         shadowRadius: 4,
     },

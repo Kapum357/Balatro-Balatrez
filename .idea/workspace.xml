@@ -5,15 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c4af56f-c3cc-4584-9303-53d21cda14af" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/progression.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/admin/[betId]/edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/admin/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/admin/new.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bets/[betId].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bets/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/BetAdminPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/BetCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/BetJoinPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/BetOptionPill.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/useBets.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/managers/betManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/betsService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(auth)/sign-in.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/sign-in.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(auth)/sign-up.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/sign-up.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/camera.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/camera.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/chat/[channelId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/chat/[channelId].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/chat/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/chat/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/play.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/play.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/shop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/shop.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tutorial.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/tutorial.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ChannelListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ChannelListItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ChatInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ChatInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ChatMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ChatMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NotificationToast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NotificationToast.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PixelButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/PixelButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PixelCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/PixelCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PixelText.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/PixelText.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ProfileForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ShopScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ShopScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants/GameConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/GameConstants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contexts/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/contexts/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contexts/GameContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/contexts/GameContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contexts/LoginContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/contexts/LoginContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/useChat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useChat.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hooks/useGameFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useGameFlow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/useProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useProfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/chatManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/managers/chatManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/deckManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/managers/deckManager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/roundManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/managers/roundManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/shopManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/managers/shopManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supabase/10_profiles_policies.sql" beforeDir="false" afterPath="$PROJECT_DIR$/supabase/10_profiles_policies.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supabase/20_storage_policies.sql" beforeDir="false" afterPath="$PROJECT_DIR$/supabase/20_storage_policies.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supabase/30_realtime_setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/supabase/30_realtime_setup.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/analytics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/analytics.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/chatService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/chatService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/pokerEvaluator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pokerEvaluator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/pokerGuide.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pokerGuide.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/profilesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/profilesService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/progression.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/progression.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/responsive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/responsive.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/scoringUtility.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/scoringUtility.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/supabaseClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/supabaseClient.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,13 +132,16 @@
     &quot;accountId&quot;: &quot;6fce79a0-9e2c-4834-831e-1334a7dc38c7&quot;
   }
 }</component>
-  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/node_modules/expo-modules-autolinking/android/expo-gradle-plugin" gradleHome="C:\Users\USUARIO\.gradle\wrapper\dists\gradle-8.14-bin\38aieal9i53h9rfe7vjup95b9\gradle-8.14" javaHome="C:\Program Files\Eclipse Adoptium\jdk-17.0.15.6-hotspot" gradleVersion="8.14" />
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin" gradleHome="C:\Users\USUARIO\.gradle\wrapper\dists\gradle-8.13-bin\5xuhj0ry160q40clulazy9h7d\gradle-8.13" javaHome="C:\Program Files\Eclipse Adoptium\jdk-17.0.15.6-hotspot" gradleVersion="8.13" />
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <hideBySeverity>
+      <option value="200" />
+    </hideBySeverity>
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -93,40 +151,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Rebasing main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.android.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.web.executor&quot;: &quot;Run&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.customInstructions.CopilotInstructionsConfigurable&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\USUARIO\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.codeInspection.ui.actions.InspectionResultsExportActionProvider.location": "C:/Users/USUARIO/Documents/GitHub/Balatro-Balatrez",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.android.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.web.executor": "Run",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "background.image.plus",
+    "ts.external.directory.path": "C:\\Users\\USUARIO\\Documents\\GitHub\\Balatro-Balatrez\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="QodanaReportsService">
-    <option name="descriptions">
-      <ReportDescription localRun="true" path="C:\Users\USUARIO\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="f5cb8f60-ee86-4a47-9084-8275745ed4b5" reportId="Balatro-Balatrez/qodana/2025-10-03" />
-    </option>
-  </component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\USUARIO\Documents\GitHub\Balatro-Balatrez\supabase" />
+      <recent name="C:\Users\USUARIO\Documents\GitHub\Balatro-Balatrez\app\admin" />
       <recent name="C:\Users\USUARIO\Documents\GitHub\Balatro-Balatrez\.expo\types" />
+      <recent name="C:\Users\USUARIO\Documents\GitHub\Balatro-Balatrez\supabase" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -212,6 +267,15 @@
       <workItem from="1759545430255" duration="1060000" />
       <workItem from="1759592138213" duration="746000" />
       <workItem from="1759594828070" duration="35000" />
+      <workItem from="1759594877697" duration="493000" />
+      <workItem from="1759646854779" duration="732000" />
+      <workItem from="1759647725996" duration="542000" />
+      <workItem from="1759648284826" duration="4843000" />
+      <workItem from="1759653762870" duration="317000" />
+      <workItem from="1759654090392" duration="1365000" />
+      <workItem from="1759655871849" duration="1889000" />
+      <workItem from="1759714052225" duration="1389000" />
+      <workItem from="1759715779500" duration="1585000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor imports to use absolute paths and update ShopScreen to utilize PixelButton for purchasing items">
       <option name="closed" value="true" />

@@ -1,10 +1,10 @@
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
-import { Platform } from "react-native";
-import { Theme } from "@/constants/Theme";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { GameProvider } from "@/contexts/GameContext";
-import { LoginProvider } from "@/contexts/LoginContext";
+import {FontAwesome5} from "@expo/vector-icons";
+import {Tabs} from "expo-router";
+import {Platform} from "react-native";
+import {Theme} from "@/constants/Theme";
+import {AuthProvider} from "@/contexts/AuthContext";
+import {GameProvider} from "@/contexts/GameContext";
+import {LoginProvider} from "@/contexts/LoginContext";
 
 export default function TabsLayout() {
     return (
@@ -46,8 +46,8 @@ export default function TabsLayout() {
                             name="home"
                             options={{
                                 title: "Home",
-                                tabBarIcon: ({ color, size }) => (
-                                    <FontAwesome5 name="home" size={size} color={color} solid />
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome5 name="home" size={size} color={color} solid/>
                                 ),
                                 headerShown: false,
                                 tabBarHideOnKeyboard: true,
@@ -57,8 +57,8 @@ export default function TabsLayout() {
                             name="play"
                             options={{
                                 title: "Play",
-                                tabBarIcon: ({ color, size }) => (
-                                    <FontAwesome5 name="dice" size={size} color={color} solid />
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome5 name="dice" size={size} color={color} solid/>
                                 ),
                             }}
                         />
@@ -66,8 +66,8 @@ export default function TabsLayout() {
                             name="tutorial"
                             options={{
                                 title: "Tutorial",
-                                tabBarIcon: ({ color, size }) => (
-                                    <FontAwesome5 name="book" size={size} color={color} solid />
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome5 name="book" size={size} color={color} solid/>
                                 ),
                             }}
                         />
@@ -75,15 +75,24 @@ export default function TabsLayout() {
                             name="shop"
                             options={{
                                 title: "Tienda",
-                                tabBarIcon: ({ color }) => <FontAwesome5 name="store" size={20} color={color} />,
+                                tabBarIcon: ({color}) => <FontAwesome5 name="store" size={20} color={color}/>,
+                            }}
+                        />
+                        <Tabs.Screen
+                            name="bets/index"
+                            options={{
+                                title: "Apuestas",
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome5 name="trophy" size={size} color={color} solid/>
+                                ),
                             }}
                         />
                         <Tabs.Screen
                             name="chat/index"
                             options={{
                                 title: "Chat",
-                                tabBarIcon: ({ color, size }) => (
-                                    <FontAwesome5 name="comments" size={size} color={color} solid />
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome5 name="comments" size={size} color={color} solid/>
                                 ),
                             }}
                         />
@@ -111,8 +120,8 @@ export default function TabsLayout() {
                             name="profile"
                             options={{
                                 title: "Perfil",
-                                tabBarIcon: ({ color, size }) => (
-                                    <FontAwesome5 name="user" size={size} color={color} solid />
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome5 name="user" size={size} color={color} solid/>
                                 ),
                             }}
                         />
@@ -124,6 +133,41 @@ export default function TabsLayout() {
                             }}/>
                         <Tabs.Screen
                             name="chat/[channelId]"
+                            options={{
+                                href: null,
+                                headerShown: false,
+                            }}
+                        />
+                        <Tabs.Screen
+                            name="bets/[betId]"
+                            options={{
+                                href: null,
+                                headerShown: false,
+                            }}
+                        />
+                        <Tabs.Screen
+                            name="game/[gameId]"
+                            options={{
+                                href: null,
+                                headerShown: false,
+                            }}
+                        />
+                        <Tabs.Screen
+                            name="admin/index"
+                            options={{
+                                href: null,
+                                headerShown: false,
+                            }}
+                        />
+                        <Tabs.Screen
+                            name="admin/[betId]/edit"
+                            options={{
+                                href: null,
+                                headerShown: false,
+                            }}
+                        />
+                        <Tabs.Screen
+                            name="admin/new"
                             options={{
                                 href: null,
                                 headerShown: false,

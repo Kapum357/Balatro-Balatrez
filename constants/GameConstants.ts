@@ -1,58 +1,61 @@
-import { Card } from '@/.expo/types/card';
+import {Card} from '@/.expo/types/card';
+
+export type BlindType = 'small' | 'big' | 'boss';
+export const BLIND_ORDER: readonly BlindType[] = ['small', 'big', 'boss'] as const;
 
 export const INITIAL_DECK: Card[] = [
-  { suit: 'hearts', value: 1 },
-  { suit: 'hearts', value: 2 },
-  { suit: 'hearts', value: 3 },
-  { suit: 'hearts', value: 4 },
-  { suit: 'hearts', value: 5 },
-  { suit: 'hearts', value: 6 },
-  { suit: 'hearts', value: 7 },
-  { suit: 'hearts', value: 8 },
-  { suit: 'hearts', value: 9 },
-  { suit: 'hearts', value: 10 },
-  { suit: 'hearts', value: 11 },
-  { suit: 'hearts', value: 12 },
-  { suit: 'hearts', value: 13 },
-  { suit: 'diamonds', value: 1 },
-  { suit: 'diamonds', value: 2 },
-  { suit: 'diamonds', value: 3 },
-  { suit: 'diamonds', value: 4 },
-  { suit: 'diamonds', value: 5 },
-  { suit: 'diamonds', value: 6 },
-  { suit: 'diamonds', value: 7 },
-  { suit: 'diamonds', value: 8 },
-  { suit: 'diamonds', value: 9 },
-  { suit: 'diamonds', value: 10 },
-  { suit: 'diamonds', value: 11 },
-  { suit: 'diamonds', value: 12 },
-  { suit: 'diamonds', value: 13 },
-  { suit: 'clubs', value: 1 },
-  { suit: 'clubs', value: 2 },
-  { suit: 'clubs', value: 3 },
-  { suit: 'clubs', value: 4 },
-  { suit: 'clubs', value: 5 },
-  { suit: 'clubs', value: 6 },
-  { suit: 'clubs', value: 7 },
-  { suit: 'clubs', value: 8 },
-  { suit: 'clubs', value: 9 },
-  { suit: 'clubs', value: 10 },
-  { suit: 'clubs', value: 11 },
-  { suit: 'clubs', value: 12 },
-  { suit: 'clubs', value: 13 },
-  { suit: 'spades', value: 1 },
-  { suit: 'spades', value: 2 },
-  { suit: 'spades', value: 3 },
-  { suit: 'spades', value: 4 },
-  { suit: 'spades', value: 5 },
-  { suit: 'spades', value: 6 },
-  { suit: 'spades', value: 7 },
-  { suit: 'spades', value: 8 },
-  { suit: 'spades', value: 9 },
-  { suit: 'spades', value: 10 },
-  { suit: 'spades', value: 11 },
-  { suit: 'spades', value: 12 },
-  { suit: 'spades', value: 13 },
+    {suit: 'hearts', value: 1},
+    {suit: 'hearts', value: 2},
+    {suit: 'hearts', value: 3},
+    {suit: 'hearts', value: 4},
+    {suit: 'hearts', value: 5},
+    {suit: 'hearts', value: 6},
+    {suit: 'hearts', value: 7},
+    {suit: 'hearts', value: 8},
+    {suit: 'hearts', value: 9},
+    {suit: 'hearts', value: 10},
+    {suit: 'hearts', value: 11},
+    {suit: 'hearts', value: 12},
+    {suit: 'hearts', value: 13},
+    {suit: 'diamonds', value: 1},
+    {suit: 'diamonds', value: 2},
+    {suit: 'diamonds', value: 3},
+    {suit: 'diamonds', value: 4},
+    {suit: 'diamonds', value: 5},
+    {suit: 'diamonds', value: 6},
+    {suit: 'diamonds', value: 7},
+    {suit: 'diamonds', value: 8},
+    {suit: 'diamonds', value: 9},
+    {suit: 'diamonds', value: 10},
+    {suit: 'diamonds', value: 11},
+    {suit: 'diamonds', value: 12},
+    {suit: 'diamonds', value: 13},
+    {suit: 'clubs', value: 1},
+    {suit: 'clubs', value: 2},
+    {suit: 'clubs', value: 3},
+    {suit: 'clubs', value: 4},
+    {suit: 'clubs', value: 5},
+    {suit: 'clubs', value: 6},
+    {suit: 'clubs', value: 7},
+    {suit: 'clubs', value: 8},
+    {suit: 'clubs', value: 9},
+    {suit: 'clubs', value: 10},
+    {suit: 'clubs', value: 11},
+    {suit: 'clubs', value: 12},
+    {suit: 'clubs', value: 13},
+    {suit: 'spades', value: 1},
+    {suit: 'spades', value: 2},
+    {suit: 'spades', value: 3},
+    {suit: 'spades', value: 4},
+    {suit: 'spades', value: 5},
+    {suit: 'spades', value: 6},
+    {suit: 'spades', value: 7},
+    {suit: 'spades', value: 8},
+    {suit: 'spades', value: 9},
+    {suit: 'spades', value: 10},
+    {suit: 'spades', value: 11},
+    {suit: 'spades', value: 12},
+    {suit: 'spades', value: 13},
 ] as const;
 
 export const GAME_CONSTANTS = {
@@ -60,17 +63,28 @@ export const GAME_CONSTANTS = {
     MAX_DISCARD_PER_TURN: 3,
     ROUND_STARTING_SCORE: 100,
     DEFAULT_GAME_MODE: 'normal',
-  // Playthrough tunables
-  STARTING_CASH: 300,
-  HANDS_PER_BLIND: 5, // number of playable hands per blind
-  MAX_ANTE: 8, // completing ante 8 counts as a win
-  BASE_TARGET_CHIPS: 300, // base target chips for Ante 1 Small Blind
-  ANTE_SCALE: 1.6, // multiplicative scale per ante
-  BLIND_MULTIPLIERS: {
-    small: 1.0,
-    big: 1.5,
-    boss: 2.2,
-  } as const,
-  // Overflow guard (soft cap)
-  MAX_SAFE_TARGET: Number.MAX_SAFE_INTEGER,
+    // Playthrough tunables
+    STARTING_CASH: 300,
+    HANDS_PER_BLIND: 5, // number of playable hands per blind
+    MAX_ANTE: 8, // completing ante 8 counts as a win
+    BASE_TARGET_CHIPS: 100, // Starting chips target for ante 1, Small Blind
+    ANTE_SCALE: 1.6, // multiplicative scale per ante
+    BLIND_MULTIPLIERS: {
+        small: 1.0,
+        big: 1.5,
+        boss: 2.2,
+    } as const,
+    // Overflow guard (soft cap)
+    MAX_SAFE_TARGET: Number.MAX_SAFE_INTEGER,
 } as const;
+
+export const MAX_ANTE = 8;
+export const BLIND_TYPES = ['Small', 'Big', 'Boss'] as const;
+export const BLIND_MULTIPLIERS = {
+    Small: 1,
+    Big: 2,
+    Boss: 4,
+};
+export const BASE_TARGET_CHIPS = 100; // Starting chips target for ante 1, Small Blind
+export const ANTE_TARGET_MULTIPLIER = 1.5; // Each ante increases target by this factor
+export const ENDLESS_OVERFLOW_CAP = 1e12; // Cap for endless mode to prevent overflow

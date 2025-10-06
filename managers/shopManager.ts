@@ -1,5 +1,5 @@
 // managers/shopManager.ts
-import { Enhancement, Joker, TarotCard } from '@/.expo/types/specialCards';
+import {Enhancement, Joker, TarotCard} from '@/.expo/types/specialCards';
 
 export class ShopManager {
     private jokers: Joker[] = [];

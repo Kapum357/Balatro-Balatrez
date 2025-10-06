@@ -1,8 +1,8 @@
-import React, { useReducer } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
-import { PixelButton } from './PixelButton';
-import { PixelText } from './PixelText';
-import { Profile, ProfileUpdateRequest } from '@/.expo/types/profile';
+import React, {useReducer} from 'react';
+import {StyleSheet, TextInput, View} from 'react-native';
+import {PixelButton} from './PixelButton';
+import {PixelText} from './PixelText';
+import {Profile, ProfileUpdateRequest} from '@/.expo/types/profile';
 
 interface ProfileFormState {
     username: string;
@@ -33,15 +33,15 @@ const initialState: ProfileFormState = {
 function profileFormReducer(state: ProfileFormState, action: ProfileFormAction): ProfileFormState {
     switch (action.type) {
         case 'SET_FIELD':
-            return { ...state, [action.field]: action.value };
+            return {...state, [action.field]: action.value};
         case 'SET_ERROR':
-            return { ...state, errors: { ...state.errors, [action.field]: action.error } };
+            return {...state, errors: {...state.errors, [action.field]: action.error}};
         default:
             return state;
     }
 }
 
-export function ProfileForm({ initialValues, onSubmit, onCancel, isLoading }: ProfileFormProps) {
+export function ProfileForm({initialValues, onSubmit, onCancel, isLoading}: ProfileFormProps) {
     const [state, dispatch] = useReducer(profileFormReducer, {
         ...initialState,
         ...initialValues,
@@ -51,20 +51,20 @@ export function ProfileForm({ initialValues, onSubmit, onCancel, isLoading }: Pr
         let isValid = true;
 
         if (!state.username.trim()) {
-            dispatch({ type: 'SET_ERROR', field: 'username', error: 'El nombre de usuario es requerido' });
+            dispatch({type: 'SET_ERROR', field: 'username', error: 'El nombre de usuario es requerido'});
             isValid = false;
         } else if (state.username.length < 3) {
-            dispatch({ type: 'SET_ERROR', field: 'username', error: 'El nombre debe tener al menos 3 caracteres' });
+            dispatch({type: 'SET_ERROR', field: 'username', error: 'El nombre debe tener al menos 3 caracteres'});
             isValid = false;
         } else {
-            dispatch({ type: 'SET_ERROR', field: 'username', error: undefined });
+            dispatch({type: 'SET_ERROR', field: 'username', error: undefined});
         }
 
         if (state.avatar_url && !state.avatar_url.match(/^https?:\/\/.+/)) {
-            dispatch({ type: 'SET_ERROR', field: 'avatar_url', error: 'La URL del avatar debe ser válida' });
+            dispatch({type: 'SET_ERROR', field: 'avatar_url', error: 'La URL del avatar debe ser válida'});
             isValid = false;
         } else {
-            dispatch({ type: 'SET_ERROR', field: 'avatar_url', error: undefined });
+            dispatch({type: 'SET_ERROR', field: 'avatar_url', error: undefined});
         }
 
         return isValid;
@@ -73,7 +73,7 @@ export function ProfileForm({ initialValues, onSubmit, onCancel, isLoading }: Pr
     const handleSubmit = async () => {
         if (!validateForm()) return;
 
-        const { errors, ...formData } = state;
+        const {errors, ...formData} = state;
         const sanitizedFormData = {
             ...formData,
             avatar_url: formData.avatar_url || '', // Convertir null a cadena vacía
@@ -88,7 +88,7 @@ export function ProfileForm({ initialValues, onSubmit, onCancel, isLoading }: Pr
                 <TextInput
                     style={[styles.input, state.errors.username && styles.inputError]}
                     value={state.username}
-                    onChangeText={(value) => dispatch({ type: 'SET_FIELD', field: 'username', value })}
+                    onChangeText={(value) => dispatch({type: 'SET_FIELD', field: 'username', value})}
                     placeholder="Tu nombre de usuario"
                     maxLength={30}
                     autoCapitalize="none"
@@ -104,7 +104,7 @@ export function ProfileForm({ initialValues, onSubmit, onCancel, isLoading }: Pr
                 <TextInput
                     style={[styles.input, state.errors.avatar_url && styles.inputError]}
                     value={state.avatar_url || ''} // Convertir null a cadena vacía
-                    onChangeText={(value) => dispatch({ type: 'SET_FIELD', field: 'avatar_url', value })}
+                    onChangeText={(value) => dispatch({type: 'SET_FIELD', field: 'avatar_url', value})}
                     placeholder="https://tu-avatar.com/imagen.png"
                     autoCapitalize="none"
                     autoCorrect={false}
